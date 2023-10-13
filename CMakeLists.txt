@@ -1,15 +1,45 @@
 cmake_minimum_required(VERSION 3.8)
 project(elmo_motor_ctrl)
 
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+
+set(CMAKE_CXX_FLAGS "-O3 -Wall -fPIC -no-pie -pthread")
+
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(Threads)
+
+add_library(libMMC_APP SHARED IMPORTED)
+set_target_properties(libMMC_APP PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMC_APP_LinuxRpc64.a)
+add_library(libMMCPP SHARED IMPORTED)
+set_target_properties(libMMCPP PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMCPP_LinuxRpc64.a)
+
+add_executable(motor_test src/motor_test.cpp)
+# ament_target_dependences(motor_test rclcpp std_msgs)
+
+target_include_directories(motor_test PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/elmo_motor_ctrl
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/MMC_APP/Src/OsCommon/includes
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/MMC_APP/Src/OsPlatform/includes
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/MMCPP/Src/OsCommon/includes
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/MMCPP/Src/OsPlatform/includes)
+
+target_link_libraries(motor_test
+  pthread
+  libMMC_APP
+  libMMCPP)
+
+install(TARGETS motor_test
+  DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
