@@ -16,16 +16,15 @@
 #include "MMC_definitions.h"
 #include "MMCPPlib.hpp"
 #include "win32_motion.h"
-// #include "CPP_CyclicPosHome.h"	// Application header file.
 #include <iostream>
 #include <stdint.h>
 #include <sys/time.h>  // For time structure
 #include <csignal>     // For Timer mechanism
 
 // function prototypes
-int MainInit();
+void MainInit();
 int CloseConnection();
-void StopMotor(int signum);
+void StopMotor_cb(int signum);
 void Emergency_Received(unsigned short usAxisRef, short sEmcyCode);
 
 /**
@@ -35,11 +34,7 @@ void Emergency_Received(unsigned short usAxisRef, short sEmcyCode);
  */
 int main()
 {
-  if (MainInit() != 0) {
-    printf("init failed!!!\n");
-  } else {
-    printf("success!!!!\n");
-  }
+  MainInit();
 
   try {
     // enable axis and wait till axis enable is done
@@ -52,7 +47,7 @@ int main()
     }
     std::cout << "status after power on: 0x" << std::hex << cAxis[0].ReadStatus() << std::endl;
 
-    std::signal(SIGINT, StopMotor);
+    std::signal(SIGINT, StopMotor_cb);
 
     cAxis[0].MoveVelocity(1000);  // uint: cnt/sec ------------- 24cnt/r
     // cAxis[0].MoveAbsolute(500);
@@ -78,7 +73,7 @@ int main()
  * 
  * @return int 
  */
-int MainInit()
+void MainInit()
 {
   printf("init connection\n");
 
@@ -117,9 +112,9 @@ int MainInit()
     }
   } catch (CMMCException exp) {
     cout << "init failed!!" << exp.what() << endl;
+    exit(1);
   }
-
-  return 0;
+  std::cout << std::endl;
 }
 
 /**
@@ -136,13 +131,13 @@ int CloseConnection()
 
   if (retval != 0) {
     printf("ERROR CloseConnection: MMC_CloseConnection fail %d\n", retval);
-    return (-1);
+    return -1;
   }
 
-  return (0);
+  return 0;
 }
 
-void StopMotor(int signum)
+void StopMotor_cb(int signum)
 {
   std::cout << "caught signal: " << signum << std::endl;
   for (int i = 0; i < MAX_AXES; i++) {
