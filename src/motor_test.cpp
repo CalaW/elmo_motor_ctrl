@@ -20,7 +20,7 @@
 #include <iostream>
 #include <stdint.h>
 #include <sys/time.h>  // For time structure
-#include <csignal>    // For Timer mechanism
+#include <csignal>     // For Timer mechanism
 
 // function prototypes
 int MainInit();
@@ -64,11 +64,8 @@ int main()
 
     // disable axis
     cAxis[0].PowerOff();
-  } catch (CMMCException exp) {
-    cout << "main function poweroff exception!!" << exp.what() << "error" << exp.error() << endl;
-  }
 
-  catch (CMMCException exp) {
+  } catch (CMMCException exp) {
     cout << "main function exception!!" << exp.what() << "error" << exp.error() << endl;
   }
 
@@ -85,10 +82,14 @@ int MainInit()
 {
   printf("init connection\n");
 
-  conn_param.uiTcpPort = 4000;
-  strcpy((char *)conn_param.ucIp, "192.168.1.3");  // target IP
+  // this is not safe but have to do this
+  auto host_ip = (char *)"192.168.1.2";
+  auto target_ip = (char *)"192.168.1.3";
 
-  g_conn_hndl = cConn.ConnectRPCEx("192.168.1.2", "192.168.1.3", 0x7fffffff, NULL);
+  conn_param.uiTcpPort = 4000;
+  strcpy((char *)conn_param.ucIp, target_ip);
+
+  g_conn_hndl = cConn.ConnectRPCEx(host_ip, target_ip, 0x7fffffff, NULL);
 
   // Register the callback function for Emergency:
   cConn.RegisterEventCallback(MMCPP_EMCY, (void *)Emergency_Received);
