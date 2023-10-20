@@ -167,7 +167,7 @@ int 	giYPos ;
  Global structures for Elmo's Function Blocks
 ============================================================================
 */
-MMC_CONNECT_HNDL gConnHndl ;					// Connection Handle
+MMC_CONNECT_HNDL g_conn_hndl ;					// Connection Handle
 CMMCConnection cConn ;
 CMMCSingleAxis 	cAxes[MAX_AXES] ;
 MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN 	mbus_write_in;

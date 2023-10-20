@@ -19,7 +19,7 @@ Name:			Win32BulkRead.h
 /* ============================================================================
  General constants
  ============================================================================ */
-#define 	MAX_AXES					5		// number of Physical axes in the system.
+#define 	MAX_AXES					2		// number of Physical axes in the system.
 #define		MAX_VECTORS					0		// number of X,Y vectors in the system.
 #define 	FALSE						0
 #define 	TRUE						1

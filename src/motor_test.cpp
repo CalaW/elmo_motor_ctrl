@@ -1,43 +1,13 @@
-/*
-============================================================================
- Name : 	CPP_CyclicPosHome.cpp
- Author :	Benjamin Spitzer
- Version :	1.00
- Description : The following example supports the following functionalities:
+/**
+ * @file motor_test.cpp
+ * @author Chen Chen (maker_cc@foxmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2023-10-20
+ * 
+ * 
+ */
 
-         - Modbus callback registration.
-         - Emergency callback registration.
-         - Modbus reading and updates of axis status and positions.
-         - Dig In and out are used.
-         - Point to Point
-         - Homing
-         - Stop All axes
-         - Move Pulses
-         - Start move Pulses depending on digital input
-
- The program works with MAX_AXES in DS402 Profile Position and DS402 Homing
-motion modes. These are configured automatically by the called functions. For
-the above functions, the following modbus 'codes' are to be sent to address
-40001:
-
-         - Point to Point 	- 1. Performs a Cyclic Position motion, back and
-fourth, and sets power off to all MAX_AXES.
-         - Homing			- 2. Performs a Homing on index, and sets
-power off to all MAX_AXES.
-         - Stop All axes	- 3. Stops current motion and sets all motors off
-to all MAX_AXES.
-         - Move Pulses 		- 4. Performs synchronized motions for MAX_AXES,
-NUM_MOTIONS times. And then changes direction NUM_MOTIONS times. This works
-infinately until stopped (by calling Stop All axes). Also - Digital Outputs are
-set at motion end
-
-        The following information is updated to the Modbcontrollerus at address
-MODBUS_UPDATE_START_INDEX:
-                - All positions of axes, depending on MAX_AXES.
-                - Digital Inputs of axis 1(if mapped of course)
-
-============================================================================
-*/
 #define ENDIAN_SELECT 123
 #define OS_PLATFORM 777
 #include "OS_PlatformDependSetting.h"
@@ -50,19 +20,19 @@ MODBUS_UPDATE_START_INDEX:
 #include <iostream>
 #include <stdint.h>
 #include <sys/time.h>  // For time structure
-#include <signal.h>    // For Timer mechanism
+#include <csignal>    // For Timer mechanism
 
-/* ============================================================================
-  functions prototypes
-============================================================================ */
+// function prototypes
 int MainInit();
 int CloseConnection();
+void StopMotor(int signum);
 void Emergency_Received(unsigned short usAxisRef, short sEmcyCode);
 
-/* ============================================================================
- Function:		main()
- Description:    The main function of this sample project.
-============================================================================ */
+/**
+ * @brief the main function of this project
+ * 
+ * @return int 
+ */
 int main()
 {
   if (MainInit() != 0) {
@@ -73,21 +43,29 @@ int main()
 
   try {
     // enable axis and wait till axis enable is done
-    cAxis[0].PowerOn();
-    while ((!cAxis[0].ReadStatus()) & NC_AXIS_STAND_STILL_MASK)
-      ;
+    std::cout << "status before power on: 0x" << std::hex << cAxis[0].ReadStatus() << std::endl;
+    auto status = cAxis[0].ReadStatus();
+    if (status & NC_AXIS_DISABLED_MASK) {
+      cAxis[0].PowerOn();
+      while (!(cAxis[0].ReadStatus() & NC_AXIS_STAND_STILL_MASK))
+        ;
+    }
+    std::cout << "status after power on: 0x" << std::hex << cAxis[0].ReadStatus() << std::endl;
 
-    cAxis[0].MoveVelocity(300);  // uint: cnt/sec ------------- 24cnt/r
+    std::signal(SIGINT, StopMotor);
+
+    cAxis[0].MoveVelocity(1000);  // uint: cnt/sec ------------- 24cnt/r
     // cAxis[0].MoveAbsolute(500);
     sleep(10);
-
     // stop axis wait till its in a 'standstill' state
     cAxis[0].Stop();
-    while ((!cAxis[0].ReadStatus()) & NC_AXIS_STAND_STILL_MASK)
+    while (!(cAxis[0].ReadStatus() & NC_AXIS_STAND_STILL_MASK))
       ;
 
     // disable axis
     cAxis[0].PowerOff();
+  } catch (CMMCException exp) {
+    cout << "main function poweroff exception!!" << exp.what() << "error" << exp.error() << endl;
   }
 
   catch (CMMCException exp) {
@@ -98,18 +76,13 @@ int main()
   return 0;
 }
 
-/* ============================================================================
- Function:		MainInit()
- Description:	Initilaize the system, including axes, communication, etc.
-============================================================================ */
+/**
+ * @brief Initialize the system, including axes, communication, etc.
+ * 
+ * @return int 
+ */
 int MainInit()
 {
-  int (*fun_ptr)(unsigned char *, short, void *);
-  int retval, indx;
-  int iCount;
-
-  fun_ptr = NULL;
-
   printf("init connection\n");
 
   conn_param.uiTcpPort = 4000;
@@ -128,15 +101,16 @@ int MainInit()
     cAxis[0].InitAxisData("a01", g_conn_hndl);
     cAxis[1].InitAxisData("a02", g_conn_hndl);
 
-    for (iCount = 0; iCount < 2; iCount++) {
-      giStatus = cAxis[iCount].ReadStatus();
+    for (int i = 0; i < MAX_AXES; i++) {
+      auto Status = cAxis[i].ReadStatus();
 
-      if (giStatus & NC_AXIS_ERROR_STOP_MASK) {
-        cAxis[iCount].Reset();
+      if (Status & NC_AXIS_ERROR_STOP_MASK) {
+        cAxis[i].Reset();
+        // sleep 1s to wait for reset
         sleep(1);
-        giStatus = cAxis[iCount].ReadStatus();
-        if (giStatus & NC_AXIS_ERROR_STOP_MASK) {
-          // PRNT4("MainInit: axis ",iCount," status error",endl);
+        Status = cAxis[i].ReadStatus();
+        if (Status & NC_AXIS_ERROR_STOP_MASK) {
+          throw runtime_error("MainInit: axis status error");
         }
       }
     }
@@ -147,10 +121,11 @@ int MainInit()
   return 0;
 }
 
-/* ============================================================================
- Function:				CloseConnection()
- Description:
- ============================================================================ */
+/**
+ * @brief Close connection
+ * 
+ * @return int 
+ */
 int CloseConnection()
 {
   int retval;
@@ -166,10 +141,21 @@ int CloseConnection()
   return (0);
 }
 
-/* ============================================================================
- Function:				Emergency_Received()
- Description:
-============================================================================ */
+void StopMotor(int signum)
+{
+  std::cout << "caught signal: " << signum << std::endl;
+  for (int i = 0; i < MAX_AXES; i++) {
+    cAxis[i].Stop();
+  }
+  exit(1);
+}
+
+/**
+ * @brief Call back function if emergency received
+ * 
+ * @param usAxisRef 
+ * @param sEmcyCode 
+ */
 void Emergency_Received(unsigned short usAxisRef, short sEmcyCode)
 {
   printf("Emergency Message Received on Axis %d. Code: %x\n", usAxisRef, sEmcyCode);
