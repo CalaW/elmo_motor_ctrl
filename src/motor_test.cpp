@@ -49,6 +49,10 @@ int main()
 
     std::signal(SIGINT, StopMotor_cb);
 
+    cAxis[0].m_fAcceleration = 1000;
+    cAxis[0].m_fDeceleration = 10000;
+    cAxis[0].m_fVelocity = 1000;
+
     cAxis[0].MoveVelocity(1000);  // uint: cnt/sec ------------- 24cnt/r
     // cAxis[0].MoveAbsolute(500);
     sleep(10);
@@ -90,23 +94,21 @@ void MainInit()
   cConn.RegisterEventCallback(MMCPP_EMCY, (void *)Emergency_Received);
 
   // Set Try-Catch flag Enable\Disable
-  CMMCPPGlobal::Instance()->SetThrowFlag(true);
+  CMMCPPGlobal::Instance()->SetThrowFlag(false);
   CMMCPPGlobal::Instance()->SetThrowWarningFlag(false);
 
   try {
     cAxis[0].InitAxisData("a01", g_conn_hndl);
-    cAxis[1].InitAxisData("a02", g_conn_hndl);
 
     for (int i = 0; i < MAX_AXES; i++) {
       auto Status = cAxis[i].ReadStatus();
 
       if (Status & NC_AXIS_ERROR_STOP_MASK) {
-        cAxis[i].Reset();
-        // sleep 1s to wait for reset
-        sleep(1);
+        std::cout << std::hex << Status << " " << std::hex << NC_AXIS_STOPPING_MASK << std::endl;
+        cAxis[i].ResetAsync();
         Status = cAxis[i].ReadStatus();
         if (Status & NC_AXIS_ERROR_STOP_MASK) {
-          throw runtime_error("MainInit: axis status error");
+          throw runtime_error(to_string(Status));
         }
       }
     }
