@@ -10,12 +10,12 @@
 
 #define ENDIAN_SELECT 123
 #define OS_PLATFORM 777
-#include "OS_PlatformDependSetting.h"
-#include "OS_PlatformDataTypeSizeSet.h"
-#include "OS_PlatformLinuxRpc64.hpp"
-#include "MMC_definitions.h"
-#include "MMCPPlib.hpp"
-#include "win32_motion.h"
+#include "elmo_maestro_api/OS_PlatformDependSetting.h"
+#include "elmo_maestro_api/OS_PlatformDataTypeSizeSet.h"
+#include "elmo_maestro_api/OS_PlatformLinuxRpc64.hpp"
+#include "elmo_maestro_api/MMC_definitions.h"
+#include "elmo_maestro_api/MMCPPlib.hpp"
+#include "elmo_maestro_hardware/motor_test.h"
 #include <iostream>
 #include <stdint.h>
 #include <sys/time.h>  // For time structure

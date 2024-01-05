@@ -1,23 +1,30 @@
 cmake_minimum_required(VERSION 3.8)
 project(elmo_maestro_hardware)
 
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14) # Need C++14 for lib to compile
+endif()
+
+set(CMAKE_CXX_FLAGS "-O3 -Wall -fPIC -no-pie -pthread")
+
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(elmo_maestro_api REQUIRED)
 
-add_executable(elmo_maestro_hardware src/elmo_maestro_hardware.cpp)
-target_include_directories(elmo_maestro_hardware PUBLIC
+add_executable(motor_test src/motor_test.cpp)
+target_include_directories(motor_test PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-target_compile_features(elmo_maestro_hardware PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+ament_target_dependencies(motor_test elmo_maestro_api)
 
-install(TARGETS elmo_maestro_hardware
+install(TARGETS motor_test
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)

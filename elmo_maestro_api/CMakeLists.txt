@@ -5,7 +5,7 @@ if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
 endif()
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
+  set(CMAKE_CXX_STANDARD 14) # Need C++14 for lib to compile
 endif()
 
 set(CMAKE_CXX_FLAGS "-O3 -Wall -fPIC -no-pie -pthread")
@@ -16,37 +16,41 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(Threads)
+# find_package(Threads)
 
-add_library(libMMC_APP SHARED IMPORTED)
-set_target_properties(libMMC_APP PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMC_APP_LinuxRpc64.a)
-add_library(libMMCPP SHARED IMPORTED)
-set_target_properties(libMMCPP PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMCPP_LinuxRpc64.a)
+set(
+  maestro_Libs
+  ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMC_APP_LinuxRpc64.a
+  ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMCPP_LinuxRpc64.a
+)
 
-add_executable(motor_test src/motor_test.cpp)
-target_include_directories(motor_test PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/elmo_maestro_api
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/MMC_APP/Src/OsCommon/includes
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/MMC_APP/Src/OsPlatform/includes
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/MMCPP/Src/OsCommon/includes
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/MMCPP/Src/OsPlatform/includes)
+add_library(${PROJECT_NAME} INTERFACE)
+target_include_directories(${PROJECT_NAME} INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  $<INSTALL_INTERFACE:include>)
+target_link_libraries(${PROJECT_NAME} INTERFACE
+  ${CMAKE_INSTALL_PREFIX}/lib/libMMC_APP_LinuxRpc64.a
+  ${CMAKE_INSTALL_PREFIX}/lib/libMMCPP_LinuxRpc64.a)
+  # ${CMAKE_THREAD_LIBS_INIT})
 
-target_link_libraries(motor_test
-  pthread
-  libMMC_APP
-  libMMCPP)
+install(
+  DIRECTORY include/${PROJECT_NAME}
+  DESTINATION include
+)
+install(
+  FILES ${maestro_Libs}
+  DESTINATION lib
+)
+install(
+  TARGETS ${PROJECT_NAME}
+  EXPORT export_${PROJECT_NAME}
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include
+)
+ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 
-install(TARGETS motor_test
-  DESTINATION lib/${PROJECT_NAME})
-
-# add_executable(sdk_test src/sdk_test.cpp)
-# target_include_directories(sdk_test PUBLIC
-#   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-#   $<INSTALL_INTERFACE:include>)
-# target_compile_features(sdk_test PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
-
-# install(TARGETS sdk_test
-#   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
