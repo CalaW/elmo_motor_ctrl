@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(elmo_motor_ctrl)
+project(elmo_maestro_api)
 
 if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
@@ -24,10 +24,8 @@ add_library(libMMCPP SHARED IMPORTED)
 set_target_properties(libMMCPP PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMCPP_LinuxRpc64.a)
 
 add_executable(motor_test src/motor_test.cpp)
-# ament_target_dependences(motor_test rclcpp std_msgs)
-
 target_include_directories(motor_test PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/elmo_motor_ctrl
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/elmo_maestro_api
   ${CMAKE_CURRENT_SOURCE_DIR}/include/MMC_APP/Src/OsCommon/includes
   ${CMAKE_CURRENT_SOURCE_DIR}/include/MMC_APP/Src/OsPlatform/includes
   ${CMAKE_CURRENT_SOURCE_DIR}/include/MMCPP/Src/OsCommon/includes
@@ -40,6 +38,15 @@ target_link_libraries(motor_test
 
 install(TARGETS motor_test
   DESTINATION lib/${PROJECT_NAME})
+
+# add_executable(sdk_test src/sdk_test.cpp)
+# target_include_directories(sdk_test PUBLIC
+#   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+#   $<INSTALL_INTERFACE:include>)
+# target_compile_features(sdk_test PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+
+# install(TARGETS sdk_test
+#   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
