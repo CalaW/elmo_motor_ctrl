@@ -22,10 +22,10 @@
 #include <csignal>     // For Timer mechanism
 
 // function prototypes
-void MainInit();
-int CloseConnection();
-void StopMotor_cb(int signum);
-void Emergency_Received(unsigned short usAxisRef, short sEmcyCode);
+void mainInit();
+int closeConnection();
+void stopMotorCb(int signum);
+void emergencyReceived(unsigned short usAxisRef, short sEmcyCode);
 
 /**
  * @brief the main function of this project
@@ -34,41 +34,40 @@ void Emergency_Received(unsigned short usAxisRef, short sEmcyCode);
  */
 int main()
 {
-  MainInit();
+  mainInit();
 
   try {
     // enable axis and wait till axis enable is done
-    std::cout << "status before power on: 0x" << std::hex << cAxis[0].ReadStatus() << std::endl;
-    auto status = cAxis[0].ReadStatus();
+    std::cout << "status before power on: 0x" << std::hex << axes[0].ReadStatus() << std::endl;
+    auto status = axes[0].ReadStatus();
     if (status & NC_AXIS_DISABLED_MASK) {
-      cAxis[0].PowerOn();
-      while (!(cAxis[0].ReadStatus() & NC_AXIS_STAND_STILL_MASK))
+      axes[0].PowerOn();
+      while (!(axes[0].ReadStatus() & NC_AXIS_STAND_STILL_MASK))
         ;
     }
-    std::cout << "status after power on: 0x" << std::hex << cAxis[0].ReadStatus() << std::endl;
+    std::cout << "status after power on: 0x" << std::hex << axes[0].ReadStatus() << std::endl;
 
-    std::signal(SIGINT, StopMotor_cb);
+    std::signal(SIGINT, stopMotorCb);
 
-    cAxis[0].m_fAcceleration = 1000;
-    cAxis[0].m_fDeceleration = 10000;
-    cAxis[0].m_fVelocity = 1000;
+    axes[0].m_fAcceleration = 1000;
+    axes[0].m_fDeceleration = 10000;
+    axes[0].m_fVelocity = 1000;
 
-    cAxis[0].MoveVelocity(1000);  // uint: cnt/sec ------------- 24cnt/r
-    // cAxis[0].MoveAbsolute(500);
+    axes[0].MoveVelocity(1000);  // uint: cnt/sec ------------- 24cnt/r
     sleep(10);
     // stop axis wait till its in a 'standstill' state
-    cAxis[0].Stop();
-    while (!(cAxis[0].ReadStatus() & NC_AXIS_STAND_STILL_MASK))
+    axes[0].Stop();
+    while (!(axes[0].ReadStatus() & NC_AXIS_STAND_STILL_MASK))
       ;
 
     // disable axis
-    cAxis[0].PowerOff();
+    axes[0].PowerOff();
 
   } catch (CMMCException exp) {
     cout << "main function exception!!" << exp.what() << "error" << exp.error() << endl;
   }
 
-  CloseConnection();
+  closeConnection();
   return 0;
 }
 
@@ -77,7 +76,7 @@ int main()
  * 
  * @return int 
  */
-void MainInit()
+void mainInit()
 {
   printf("init connection\n");
 
@@ -91,24 +90,24 @@ void MainInit()
   g_conn_hndl = cConn.ConnectRPCEx(host_ip, target_ip, 0x7fffffff, NULL);
 
   // Register the callback function for Emergency:
-  cConn.RegisterEventCallback(MMCPP_EMCY, (void *)Emergency_Received);
+  cConn.RegisterEventCallback(MMCPP_EMCY, (void *)emergencyReceived);
 
   // Set Try-Catch flag Enable\Disable
   CMMCPPGlobal::Instance()->SetThrowFlag(false);
   CMMCPPGlobal::Instance()->SetThrowWarningFlag(false);
 
   try {
-    cAxis[0].InitAxisData("a01", g_conn_hndl);
+    axes[0].InitAxisData("a01", g_conn_hndl);
 
-    for (int i = 0; i < MAX_AXES; i++) {
-      auto Status = cAxis[i].ReadStatus();
+    for (auto & axis : axes) {
+      auto status = axis.ReadStatus();
 
-      if (Status & NC_AXIS_ERROR_STOP_MASK) {
-        std::cout << std::hex << Status << " " << std::hex << NC_AXIS_STOPPING_MASK << std::endl;
-        cAxis[i].ResetAsync();
-        Status = cAxis[i].ReadStatus();
-        if (Status & NC_AXIS_ERROR_STOP_MASK) {
-          throw runtime_error(to_string(Status));
+      if (status & NC_AXIS_ERROR_STOP_MASK) {
+        std::cout << std::hex << status << " " << std::hex << NC_AXIS_STOPPING_MASK << std::endl;
+        axis.ResetAsync();
+        status = axis.ReadStatus();
+        if (status & NC_AXIS_ERROR_STOP_MASK) {
+          throw runtime_error(to_string(status));
         }
       }
     }
@@ -124,7 +123,7 @@ void MainInit()
  * 
  * @return int 
  */
-int CloseConnection()
+int closeConnection()
 {
   int retval;
   printf("close connection\n");
@@ -139,11 +138,11 @@ int CloseConnection()
   return 0;
 }
 
-void StopMotor_cb(int signum)
+void stopMotorCb(int signum)
 {
   std::cout << "caught signal: " << signum << std::endl;
-  for (int i = 0; i < MAX_AXES; i++) {
-    cAxis[i].Stop();
+  for (auto & axis : axes) {
+    axis.Stop();
   }
   exit(1);
 }
@@ -154,7 +153,7 @@ void StopMotor_cb(int signum)
  * @param usAxisRef 
  * @param sEmcyCode 
  */
-void Emergency_Received(unsigned short usAxisRef, short sEmcyCode)
+void emergencyReceived(unsigned short usAxisRef, short sEmcyCode)
 {
   printf("Emergency Message Received on Axis %d. Code: %x\n", usAxisRef, sEmcyCode);
 }

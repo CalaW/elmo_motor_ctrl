@@ -62,7 +62,7 @@ EXT MMC_GET_VER_OUT				ver_out;
 EXT CMMCBulkRead				*stBulkData;
 EXT MMC_CONFIGBULKREAD_IN 		stCfgBulkReadIn;
 EXT CMMCConnection 				cConn ;
-EXT CMMCSingleAxis 				cAxis[MAX_AXES];
+EXT CMMCSingleAxis 				axes[MAX_AXES];
 EXT int 						axis_state[MAX_AXES];
 
 
