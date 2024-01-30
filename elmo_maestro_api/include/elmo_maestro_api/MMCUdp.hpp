@@ -22,39 +22,39 @@ public:
 
     inline void SetMessageMaxSize(int iSize) {_iMsgMaxSize = iSize;}
 
-    /*! \fn int Create (char * cIP, int iPort) throw (CMMCException)
+    /*! \fn int Create (char * cIP, int iPort) 
     * \brief this function creates the socket.
     * \param cIP - IP address of driver.
     * \param iPort - port for socket connection.
     * \return   return - 0 on success, otherwise throws CMMCException or non zero.
     */
-    ELMO_INT32 Create (ELMO_PINT8 cIP, ELMO_INT32 iPort, ELMO_INT32 iGMASPort = 0, ELMO_INT32 iMaxSize = 512) throw (CMMCException) ;
+    ELMO_INT32 Create (ELMO_PINT8 cIP, ELMO_INT32 iPort, ELMO_INT32 iGMASPort = 0, ELMO_INT32 iMaxSize = 512)  ;
 
-    /*! \fn int SendTo(char* msg, short sLength) throw (CMMCException)
+    /*! \fn int SendTo(char* msg, short sLength) 
     * \brief this function sends data via socket.
     * \param msg - message buffer to send..
     * \param sLength - length (bytes) of data to send. must not be more then buffer length.
     * \return result>=0 on success, otherwise throws CMMCException or -1.
     */
-    ELMO_INT32 SendTo(ELMO_PINT8 msg, ELMO_INT16 sLength, ELMO_BOOL clrRcvBuf=true) ;//throw (CMMCException);
+    ELMO_INT32 SendTo(ELMO_PINT8 msg, ELMO_INT16 sLength, ELMO_BOOL clrRcvBuf=true) ;//;
 
-    /*! \fn int RecvFrom(char* msg, short sLength, short sTimeoutMS) throw (CMMCException)
+    /*! \fn int RecvFrom(char* msg, short sLength, short sTimeoutMS) 
     * \brief this function receives data from socket.
     * \param msg - message buffer to receive data..
     * \param sLength - length to read. must not be more then buffer length.
     * \param sTimeoutMS - milliseconds to wait on receive.
     * \return   return - result>=0 on success, otherwise throws CMMCException or result<0.
     */
-    ELMO_INT32 ReceiveFrom(ELMO_PINT8 msg, ELMO_INT16 sLength, ELMO_INT16 sTimeout) throw (CMMCException);
+    ELMO_INT32 ReceiveFrom(ELMO_PINT8 msg, ELMO_INT16 sLength, ELMO_INT16 sTimeout) ;
 
 
-    /*! \fn int GetIP(char* msg, short sLength) throw (CMMCException)
+    /*! \fn int GetIP(char* msg, short sLength) 
     * \brief This function returns the ip of the connection
     * \return the IP address as character array.
     */
-    in_addr GetIP() ;//throw (CMMCException);
+    in_addr GetIP() ;//;
 
-//  int GetPort() throw (CMMCException) ;
+//  int GetPort()  ;
 
     /*! \fn int Close ()
     * \brief this function closes the socket.
@@ -74,7 +74,7 @@ public:
  * \param iMsgMaxSize largest possible message (in bytes). relevant only for call-back mode of operation.
  * \return 0 on success, -1 otherwise. socket number (iSock) is update on success, otherwise -1;
  */
-ELMO_INT32 Create (ELMO_UINT16 usPort, SOCK_CLBK fnClbk=NULL, ELMO_INT32 iMsgMaxSize=512) throw (CMMCException);
+ELMO_INT32 Create (ELMO_UINT16 usPort, SOCK_CLBK fnClbk=NULL, ELMO_INT32 iMsgMaxSize=512) ;
 
 /**\!fn int Receive (void * pData, unsigned short usSize, long lDelay, sockaddr_in* pSockaddr)
  * \brief receives UDP message pointed by pData.
@@ -85,7 +85,7 @@ ELMO_INT32 Create (ELMO_UINT16 usPort, SOCK_CLBK fnClbk=NULL, ELMO_INT32 iMsgMax
  *        On call-back mode it shell be delivered to Send by call-back function for synchronous matters.
  * \return number of read bytes, -1 otherwise.
  */
-ELMO_INT32 Receive (ELMO_PVOID pData, ELMO_UINT16 usSize, ELMO_LINT32 lDelay=0L, sockaddr_in* pSockaddr=NULL) throw (CMMCException);
+ELMO_INT32 Receive (ELMO_PVOID pData, ELMO_UINT16 usSize, ELMO_LINT32 lDelay=0L, sockaddr_in* pSockaddr=NULL) ;
 /**\!fn int Send (void * pData, unsigned short usSize, sockaddr_in* pSockaddr)
  * \brief sends udp message pointed by pData.
  * \param pData (IN) pointer to data to send
@@ -94,9 +94,9 @@ ELMO_INT32 Receive (ELMO_PVOID pData, ELMO_UINT16 usSize, ELMO_LINT32 lDelay=0L,
  *        On call-back mode it may be pointed to the socket address with data from last receive.
  * \return number of bytes actually sent, -1 otherwise.
  */
-ELMO_INT32 Send (ELMO_PVOID pData, ELMO_UINT16 usSize, sockaddr_in* pSockaddr=NULL) throw (CMMCException);
+ELMO_INT32 Send (ELMO_PVOID pData, ELMO_UINT16 usSize, sockaddr_in* pSockaddr=NULL) ;
 //int inline Connect(char * cIP, int iPort) {return Create(cIP, iPort);}
-ELMO_INT32 Connect(ELMO_PINT8 szAddr, ELMO_UINT16 usPort, ELMO_BOOL& bWait, ELMO_INT32 iMsgMaxSize=512) throw (CMMCException);
+ELMO_INT32 Connect(ELMO_PINT8 szAddr, ELMO_UINT16 usPort, ELMO_BOOL& bWait, ELMO_INT32 iMsgMaxSize=512) ;
 
 /**! \fn int IsReady();
  * \brief checks for errors and whether or not UDP connection is ready for read operation.
@@ -133,7 +133,7 @@ private:
     * \param bFail true if error(socket must be closed then), false otherwise.
     * \return: OK if connection complete / ERROR if fail or still pending
     */
-    ELMO_INT32 IsPending(ELMO_INT32 iSock) throw (CMMCException);
+    ELMO_INT32 IsPending(ELMO_INT32 iSock) ;
 
     /*! \fn int SetSocketTimeout(int  iMilliseconds)
     * \brief this function set socket to block only for iMilliseconds on receive operation.

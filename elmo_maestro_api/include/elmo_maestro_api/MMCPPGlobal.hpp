@@ -176,15 +176,15 @@ public:
     * \brief The function returns the SYNC time, in case of CAN communication.
     * \return   return - sync time on success, otherwise throws CMMCException.
     */
-    ELMO_UINT16 GetSyncTime(MMC_CONNECT_HNDL uiConnHndl) throw (CMMCException);
+    ELMO_UINT16 GetSyncTime(MMC_CONNECT_HNDL uiConnHndl) ;
     /*! \fn int SetSyncTime(
     * \brief The function sets the SYNC time in the communication module.
     * \param  usSync - sync time.
     * \return   return - 0 if success, otherwise throws CMMCException.
     */
-    ELMO_INT32 SetSyncTime(MMC_CONNECT_HNDL uiConnHndl, ELMO_UINT16 usSync) throw (CMMCException);
-    void CreateSYNCTimer(MMC_CONNECT_HNDL uiConnHndl, MMC_SYNC_TIMER_CB_FUNC pfClbk, ELMO_UINT16 usSYNCTimerTime)  throw (CMMCException);
-    void DestroySYNCTimer(MMC_CONNECT_HNDL uiConnHndl) throw (CMMCException);
+    ELMO_INT32 SetSyncTime(MMC_CONNECT_HNDL uiConnHndl, ELMO_UINT16 usSync) ;
+    void CreateSYNCTimer(MMC_CONNECT_HNDL uiConnHndl, MMC_SYNC_TIMER_CB_FUNC pfClbk, ELMO_UINT16 usSYNCTimerTime)  ;
+    void DestroySYNCTimer(MMC_CONNECT_HNDL uiConnHndl) ;
     //
     ELMO_INT32 RegisterConnection(MMC_CONNECT_HNDL uiConnHndl, ELMO_PVOID pConn);
     ELMO_PVOID GetConnectionReg(MMC_CONNECT_HNDL uiConnHndl);
@@ -205,14 +205,14 @@ public:
                                    NC_BULKREAD_PRESET_ENUM ePreset,
                                    ELMO_UINT16 usAxisRefArray[],
                                    ELMO_UINT16 usNumberOfAxes,
-                                   ELMO_PFLOAT fFactorsArray) throw (CMMCException);
+                                   ELMO_PFLOAT fFactorsArray) ;
 
     void            ConfigBulkRead(MMC_CONNECT_HNDL hConnHndl,
                                    NC_BULKREAD_CONFIG_ENUM eConfig,
                                    ELMO_ULINT32  ulParameters[],
                                    ELMO_UINT16   usAxisRefArray[],
                                    ELMO_UINT16   usNumberOfAxes,
-                                   ELMO_PFLOAT   fFactorsArray) throw (CMMCException);
+                                   ELMO_PFLOAT   fFactorsArray) ;
 
     void            PerformBulkRead(MMC_CONNECT_HNDL hConnHndl,
                                    ELMO_UINT16 usNumberOfAxes,
@@ -256,11 +256,11 @@ public:
                                    ELMO_INT32 &iStatus,
                                    ELMO_INT8  cExecutableFileName[64] = NULL);
 
-    void RegErrPolicy(MMC_CONNECT_HNDL hConnHndl,MMC_REGERRPOLICY_IN stInParams) throw (CMMCException);
-    void GetErrPolicy(MMC_CONNECT_HNDL hConnHndl,MMC_GETERRPOLICY_IN stInParams,MMC_GETERRPOLICY_OUT &stOutParams) throw (CMMCException);
-    void ResetSystem(MMC_CONNECT_HNDL hConnHndl) throw (CMMCException);
+    void RegErrPolicy(MMC_CONNECT_HNDL hConnHndl,MMC_REGERRPOLICY_IN stInParams) ;
+    void GetErrPolicy(MMC_CONNECT_HNDL hConnHndl,MMC_GETERRPOLICY_IN stInParams,MMC_GETERRPOLICY_OUT &stOutParams) ;
+    void ResetSystem(MMC_CONNECT_HNDL hConnHndl) ;
 
-    void RunSineGenrator(MMC_CONNECT_HNDL hConnHndl,MMC_SINEGENERATOR_IN &stInParams) throw (CMMCException);
+    void RunSineGenrator(MMC_CONNECT_HNDL hConnHndl,MMC_SINEGENERATOR_IN &stInParams) ;
 
 //#ifndef WIN32
 #if ((OS_PLATFORM == LINUXIPC32_PLATFORM) || (OS_PLATFORM == LINUXRPC32_PLATFORM) || (OS_PLATFORM == LINUXRPC64_PLATFORM))
@@ -297,7 +297,7 @@ inline void GetLibVersion(std::string& str) {str = std::string(_MMCPP_VERSION_RE
      * \param o_params  stores data information of active axes by profile conditioning.
      * \return 0 if completed successfully, otherwise error or throws exception.
      */
-    ELMO_INT32 GetProfileConditioning(MMC_CONNECT_HNDL hConnHndl, MMC_PROFCONDINF_OUT& o_params) throw (CMMCException);
+    ELMO_INT32 GetProfileConditioning(MMC_CONNECT_HNDL hConnHndl, MMC_PROFCONDINF_OUT& o_params) ;
 
 private:
 

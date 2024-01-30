@@ -5,7 +5,7 @@ if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
 endif()
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14) # Need C++14 for lib to compile
+  set(CMAKE_CXX_STANDARD 17)
 endif()
 
 set(CMAKE_CXX_FLAGS "-O3 -Wall -fPIC -no-pie -pthread")
@@ -17,6 +17,8 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(elmo_maestro_api REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
 
 add_executable(motor_test src/motor_test.cpp)
 target_include_directories(motor_test PUBLIC
@@ -25,6 +27,15 @@ target_include_directories(motor_test PUBLIC
 ament_target_dependencies(motor_test elmo_maestro_api)
 
 install(TARGETS motor_test
+  DESTINATION lib/${PROJECT_NAME})
+
+add_executable(motor_commander src/motor_commander.cpp)
+target_include_directories(motor_commander PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+ament_target_dependencies(motor_commander elmo_maestro_api rclcpp std_msgs)
+
+install(TARGETS motor_commander
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)

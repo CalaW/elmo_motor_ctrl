@@ -49,7 +49,7 @@ public:
     /*! \fn void InitAxisData(const char* cName, MMC_CONNECT_HNDL uHandle)
     *   \brief This function initiates axis name and retrieves a session handler.
     */
-    virtual void InitAxisData(const ELMO_INT8* cName, MMC_CONNECT_HNDL uHandle) throw (CMMCException)
+    virtual void InitAxisData(const ELMO_INT8* cName, MMC_CONNECT_HNDL uHandle) 
     {
         SetName(cName);
         SetConnHndl(uHandle);
@@ -61,7 +61,7 @@ public:
      * \param  cName name of the axis.
      * \return  return - 0 on success, otherwise throws CMMCException.
      */
-    ELMO_INT32 GetAxisByName(const ELMO_INT8* cName) throw (CMMCException);
+    ELMO_INT32 GetAxisByName(const ELMO_INT8* cName) ;
 
 
     /*! \fn unsigned int SetDefaultManufacturerParameters()
@@ -70,20 +70,20 @@ public:
     * \return
     */
 
-    void SetDefaultManufacturerParameters() throw (CMMCException);
+    void SetDefaultManufacturerParameters() ;
 
     /*! \fn unsigned int GetStatusRegister()
     * \brief This function returns the motion status word
     * \return   return - 0 on success, otherwise throws CMMCException.
     */
-    virtual ELMO_UINT32 GetStatusRegister() throw (CMMCException)
+    virtual ELMO_UINT32 GetStatusRegister() 
     {
         CMMCPPGlobal::Instance()->MMCPPThrow("MMC_GetStatusRegister:", m_uiConnHndl, m_usAxisRef, -1, NC_WRONG_NODE_TYPE, 0);
         return 0;
     }
 
 
-    ELMO_UINT32 GetSystemCounter() throw (CMMCException);
+    ELMO_UINT32 GetSystemCounter() ;
 
 
 protected:

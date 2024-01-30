@@ -32,11 +32,11 @@
         */
         virtual ~CMMCCodesysShm();
     
-        void shmStart(const ELMO_INT8 ShmName[100], ELMO_DOUBLE dSize) throw (CMMCException);
-        void ShmStop() throw (CMMCException);
+        void shmStart(const ELMO_INT8 ShmName[100], ELMO_DOUBLE dSize) ;
+        void ShmStop() ;
     
         template<class TYPE>
-        void ShmWrite(TYPE& pData) throw (CMMCException)
+        void ShmWrite(TYPE& pData) 
         {
             if(m_ShmPtr == NULL)
             {
@@ -47,7 +47,7 @@
         }
     
         template<class TYPE>
-        void shmRead(TYPE& pData) throw (CMMCException)
+        void shmRead(TYPE& pData) 
         {
             if (m_ShmPtr == NULL)
             {

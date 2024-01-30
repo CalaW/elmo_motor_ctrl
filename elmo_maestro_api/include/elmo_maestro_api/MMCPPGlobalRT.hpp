@@ -33,38 +33,38 @@
     
         void Init(MMC_CONNECT_HNDL uHandle);
     
-        ELMO_DOUBLE GetCpldAdcCh1() throw (CMMCException);
-        ELMO_DOUBLE GetCpldAdcCh2() throw (CMMCException);
-        ELMO_DOUBLE GetCpldAdcCh3() throw (CMMCException);
-        ELMO_DOUBLE GetCpldAdcCh4() throw (CMMCException);
+        ELMO_DOUBLE GetCpldAdcCh1() ;
+        ELMO_DOUBLE GetCpldAdcCh2() ;
+        ELMO_DOUBLE GetCpldAdcCh3() ;
+        ELMO_DOUBLE GetCpldAdcCh4() ;
     
-        void SetCpldAdcOUTCh1(ELMO_DOUBLE lVal) throw (CMMCException);
-        void SetCpldAdcOUTCh2(ELMO_DOUBLE lVal) throw (CMMCException);
-        void SetCpldAdcOUTCh3(ELMO_DOUBLE lVal) throw (CMMCException);
-        void SetCpldAdcOUTCh4(ELMO_DOUBLE lVal) throw (CMMCException);
+        void SetCpldAdcOUTCh1(ELMO_DOUBLE lVal) ;
+        void SetCpldAdcOUTCh2(ELMO_DOUBLE lVal) ;
+        void SetCpldAdcOUTCh3(ELMO_DOUBLE lVal) ;
+        void SetCpldAdcOUTCh4(ELMO_DOUBLE lVal) ;
     
-        ELMO_ULINT32 GetCpldExtendedIOIn1() throw (CMMCException);
-        void SetCpldExtendedIOOut1(ELMO_ULINT32 ulVal) throw (CMMCException);
-        void SetCpldExtendedIOOut2(ELMO_ULINT32 ulVal) throw (CMMCException);
-        void SetCpldExtendedIOOut3(ELMO_ULINT32 ulVal) throw (CMMCException);
+        ELMO_ULINT32 GetCpldExtendedIOIn1() ;
+        void SetCpldExtendedIOOut1(ELMO_ULINT32 ulVal) ;
+        void SetCpldExtendedIOOut2(ELMO_ULINT32 ulVal) ;
+        void SetCpldExtendedIOOut3(ELMO_ULINT32 ulVal) ;
     
-        void SetSILLongData(ELMO_INT32 iIndex, ELMO_LINT32 lVal) throw (CMMCException);
-        void SetSILDoubleData(ELMO_INT32 iIndex, ELMO_DOUBLE dVal) throw (CMMCException);
+        void SetSILLongData(ELMO_INT32 iIndex, ELMO_LINT32 lVal) ;
+        void SetSILDoubleData(ELMO_INT32 iIndex, ELMO_DOUBLE dVal) ;
     
     
-        ELMO_ULINT32 GetCycleCounter() throw (CMMCException);
+        ELMO_ULINT32 GetCycleCounter() ;
     
-        void GetInputCapture(ELMO_UINT16 usIndex, ELMO_PUINT32 uiEventCounter, ELMO_PUINT32 uiCaptureTime) throw (CMMCException);
+        void GetInputCapture(ELMO_UINT16 usIndex, ELMO_PUINT32 uiEventCounter, ELMO_PUINT32 uiCaptureTime) ;
 
-		ELMO_DOUBLE GetCpldQuad1PosUU() throw (CMMCException);
-		ELMO_DOUBLE GetCpldQuad2PosUU() throw (CMMCException);
-		ELMO_DOUBLE GetCpldQuad1Vel() throw (CMMCException);
-		ELMO_DOUBLE GetCpldQuad2Vel() throw (CMMCException);
+		ELMO_DOUBLE GetCpldQuad1PosUU() ;
+		ELMO_DOUBLE GetCpldQuad2PosUU() ;
+		ELMO_DOUBLE GetCpldQuad1Vel() ;
+		ELMO_DOUBLE GetCpldQuad2Vel() ;
 
-		ELMO_DOUBLE GetCpldAbs1PosUU() throw (CMMCException);
-		ELMO_DOUBLE GetCpldAbs2PosUU() throw (CMMCException);
-		ELMO_DOUBLE GetCpldAbs1Vel() throw (CMMCException);
-		ELMO_DOUBLE GetCpldAbs2Vel() throw (CMMCException);
+		ELMO_DOUBLE GetCpldAbs1PosUU() ;
+		ELMO_DOUBLE GetCpldAbs2PosUU() ;
+		ELMO_DOUBLE GetCpldAbs1Vel() ;
+		ELMO_DOUBLE GetCpldAbs2Vel() ;
     
         ELMO_ULINT32 GetSILBAEver ();
     

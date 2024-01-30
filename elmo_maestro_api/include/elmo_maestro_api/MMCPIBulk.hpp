@@ -29,7 +29,7 @@ public:
     /*! \fn constructor()
     *   \brief constructor that connection handle and size of array.
     */
-    CMMCPIBulk(MMC_CONNECT_HNDL ConnHndl, ELMO_INT32 iSize, NC_BULKREAD_CONFIG_PI_ENUM  eConfiguration, CMMCPIVar *PIVARArr = NULL) throw (CMMCException);
+    CMMCPIBulk(MMC_CONNECT_HNDL ConnHndl, ELMO_INT32 iSize, NC_BULKREAD_CONFIG_PI_ENUM  eConfiguration, CMMCPIVar *PIVARArr = NULL) ;
 
     /*! \fn destructor
     */
@@ -38,27 +38,27 @@ public:
     /*! \fn Init()
     *   \brief set inital value for class
     */
-    void Init(MMC_CONNECT_HNDL ConnHndl, ELMO_INT32 iSize, NC_BULKREAD_CONFIG_PI_ENUM  eConfiguration, CMMCPIVar *PIVARArr = NULL) throw (CMMCException);
+    void Init(MMC_CONNECT_HNDL ConnHndl, ELMO_INT32 iSize, NC_BULKREAD_CONFIG_PI_ENUM  eConfiguration, CMMCPIVar *PIVARArr = NULL) ;
 
     /*! \fn Append()
     *   \Add new CMMCCPIVar to the array of PIVAR
     */
-    void Append(CMMCPIVar &PIVar) throw (CMMCException);
+    void Append(CMMCPIVar &PIVar) ;
 
     /*! \fn Clear()
     *   \Clear the instance of the PIBULKREAD
     */
-    void Clear() throw (CMMCException);
+    void Clear() ;
 
     /*! \fn Config()
     *   \Perform config bulk read according to the setting
     */
-    void Config() throw (CMMCException);
+    void Config() ;
 
     /*! \fn Upload()
     *   \Perform upload of the data
     */
-    void Upload() throw (CMMCException);
+    void Upload() ;
 
 
 private:

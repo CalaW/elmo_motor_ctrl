@@ -20,12 +20,12 @@ public:
     CMMCECATIO();
     virtual ~CMMCECATIO();
 
-    void        ECATIOEnableDIChangedEvent  (                                       )   throw (CMMCException);
-    void        ECATIODisableDIChangedEvent (                                       )   throw (CMMCException);
-    MMCPPULL_T  ECATIOReadDigitalInput      (                                       )   throw (CMMCException);
-    void        ECATIOWriteDigitalOutput    (MMCPPULL_T ulliDO                      )   throw (CMMCException);
-    ELMO_INT16  ECATIOReadAnalogInput       (ELMO_UINT8 ucIndex                     )   throw (CMMCException);
-    void        ECATIOWriteAnalogOutput     (ELMO_UINT8 ucIndex, ELMO_INT16 sAOValue)   throw (CMMCException);
+    void        ECATIOEnableDIChangedEvent  (                                       )   ;
+    void        ECATIODisableDIChangedEvent (                                       )   ;
+    MMCPPULL_T  ECATIOReadDigitalInput      (                                       )   ;
+    void        ECATIOWriteDigitalOutput    (MMCPPULL_T ulliDO                      )   ;
+    ELMO_INT16  ECATIOReadAnalogInput       (ELMO_UINT8 ucIndex                     )   ;
+    void        ECATIOWriteAnalogOutput     (ELMO_UINT8 ucIndex, ELMO_INT16 sAOValue)   ;
 
 };
 

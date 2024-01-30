@@ -25,9 +25,9 @@ public:
 						/* if FileName including path it ignore (removes)	*/
 						/* DesHostFilePath keep on host (not send to client)*/
 						/* if null keep previous path or use the default.	*/
-ELMO_INT32	UtilDownloadFile(IN MMC_CONNECT_HNDL ConnHndl, ELMO_PINT8 FileName, ELMO_PINT8 DesHostFilePath, ELMO_PINT8 RpcHostIp, MMC_DOWNLOAD_TYPE_ENUM FileDownloadType)	throw (CMMCException);
+ELMO_INT32	UtilDownloadFile(IN MMC_CONNECT_HNDL ConnHndl, ELMO_PINT8 FileName, ELMO_PINT8 DesHostFilePath, ELMO_PINT8 RpcHostIp, MMC_DOWNLOAD_TYPE_ENUM FileDownloadType)	;
 						/* Upload ("ExportFile") direction is "FROM Gmas"	*/
-ELMO_INT32	UtilUploadFile  (IN MMC_CONNECT_HNDL ConnHndl, ELMO_PINT8 FileName, ELMO_PINT8 DesHostFilePath, ELMO_PINT8 RpcHostIp, MMC_DOWNLOAD_TYPE_ENUM FileDownloadType)	throw (CMMCException);
+ELMO_INT32	UtilUploadFile  (IN MMC_CONNECT_HNDL ConnHndl, ELMO_PINT8 FileName, ELMO_PINT8 DesHostFilePath, ELMO_PINT8 RpcHostIp, MMC_DOWNLOAD_TYPE_ENUM FileDownloadType)	;
 						/* If the server not running, run it and flag it	*/
 						/* for stay running.								*/
 						/* DesHostFilePath keep on host (not send to client)*/

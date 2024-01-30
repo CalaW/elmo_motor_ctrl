@@ -28,7 +28,7 @@
 
 #if   (OS_PLATFORM == LINUXIPC32_PLATFORM)
 
-  //  int GetPort() throw (CMMCException) ;
+  //  int GetPort()  ;
 
       /*! \fn int Close_UDP ()
       * \brief this function closes the socket.
@@ -42,7 +42,7 @@
    * \param iMsgMaxSize largest possible message (in bytes). relevant only for call-back mode of operation.
    * \return 0 on success, -1 otherwise. socket number (iSock) is update on success, otherwise -1;
    */
-  ELMO_INT32 CreateSocketfnClbk_UDP (ELMO_UINT16 usPort, int iMsgMaxSize=AMS_MAX_SIZE_DEF_UDP) throw (CMMCException);
+  ELMO_INT32 CreateSocketfnClbk_UDP (ELMO_UINT16 usPort, int iMsgMaxSize=AMS_MAX_SIZE_DEF_UDP) ;
 
   /**\!fn int Receive_UDP(void * pData, unsigned short usSize, long lDelay, sockaddr_in* pSockaddr)
    * \brief receives UDP message pointed by pData.
@@ -53,7 +53,7 @@
    *        On call-back mode it shell be delivered to Send by call-back function for synchronous matters.
    * \return number of read bytes, -1 otherwise.
    */
-  ELMO_INT32 Receive_UDP(ELMO_PVOID pData, ELMO_UINT16 usSize, ELMO_LINT32 lDelay=0L, sockaddr_in* pSockaddr=NULL) throw (CMMCException);
+  ELMO_INT32 Receive_UDP(ELMO_PVOID pData, ELMO_UINT16 usSize, ELMO_LINT32 lDelay=0L, sockaddr_in* pSockaddr=NULL) ;
 
   /**\!fn int Send_UDP(void * pData, unsigned short usSize, sockaddr_in* pSockaddr)
    * \brief sends udp message pointed by pData.
@@ -63,10 +63,10 @@
    *        On call-back mode it may be pointed to the socket address with data from last receive.
    * \return number of bytes actually sent, -1 otherwise.
    */
-  ELMO_INT32 Send_UDP(ELMO_PVOID pData, ELMO_UINT16 usSize, sockaddr_in* pSockaddr=NULL) throw (CMMCException);
+  ELMO_INT32 Send_UDP(ELMO_PVOID pData, ELMO_UINT16 usSize, sockaddr_in* pSockaddr=NULL) ;
 
   //int inline Connect_UDP(char * cIP, int iPort) {return Create(cIP, iPort);}
-  ELMO_INT32 Connect_UDP(ELMO_PINT8 szAddr, ELMO_UINT16 usPort, ELMO_BOOL& bWait, ELMO_INT32 iMsgMaxSize=AMS_MAX_SIZE_DEF_UDP) throw (CMMCException);
+  ELMO_INT32 Connect_UDP(ELMO_PINT8 szAddr, ELMO_UINT16 usPort, ELMO_BOOL& bWait, ELMO_INT32 iMsgMaxSize=AMS_MAX_SIZE_DEF_UDP) ;
 
   /**! \fn int IsReady_UDP();
    * \brief checks for errors and whether or not UDP connection is ready for read operation.
@@ -108,7 +108,7 @@
       * \param bFail true if error(socket must be closed then), false otherwise.
       * \return: OK if connection complete / ERROR if fail or still pending
       */
-      ELMO_INT32 IsPending(ELMO_INT32 iSock) throw (CMMCException);
+      ELMO_INT32 IsPending(ELMO_INT32 iSock) ;
 
       /*! \fn int SetSocketTimeout(int  iMilliseconds)
       * \brief this function set socket to block only for iMilliseconds on receive operation.

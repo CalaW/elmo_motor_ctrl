@@ -46,7 +46,7 @@ public:
      * \param iValue integer value to set.
      * \return 0 on success otherwise error (<0).
      */
-    ELMO_INT32 ElmoSetAsyncArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex, const ELMO_INT32 iVal)throw (CMMCException);
+    ELMO_INT32 ElmoSetAsyncArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex, const ELMO_INT32 iVal);
 
     /**! \fn ElmoSetAsyncArray(char szCmd[3], short iIndex, const float fVal)
      * \brief send EoE array command asynchronously.
@@ -55,7 +55,7 @@ public:
      * \param fVal real value to set.
      * \return 0 on success otherwise error (<0).
      */
-    ELMO_INT32 ElmoSetAsyncArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex, const ELMO_FLOAT fVal)throw (CMMCException);
+    ELMO_INT32 ElmoSetAsyncArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex, const ELMO_FLOAT fVal);
 
     /**! \fn ElmoSetAsyncParameter(char szCmd[3], const int iVal)
      * \brief send EoE command asynchronously.
@@ -63,7 +63,7 @@ public:
      * \param iVal value to set.
      * \return 0 on success otherwise error (<0).
      */
-    ELMO_INT32 ElmoSetAsyncParameter(ELMO_INT8 cCmd[3], const ELMO_INT32 iVal)throw (CMMCException);
+    ELMO_INT32 ElmoSetAsyncParameter(ELMO_INT8 cCmd[3], const ELMO_INT32 iVal);
 
     /**! \fn ElmoSetAsyncParameter(char szCmd[3], const int fVal)
      * \brief sends EoE command asynchronously.
@@ -71,7 +71,7 @@ public:
      * \param fValue value to set.
      * \return 0 on success otherwise error (<0).
      */
-    ELMO_INT32 ElmoSetAsyncParameter(ELMO_INT8 cCmd[3], const ELMO_FLOAT fVal)throw (CMMCException);
+    ELMO_INT32 ElmoSetAsyncParameter(ELMO_INT8 cCmd[3], const ELMO_FLOAT fVal);
 
     /**! \fn ElmoSetArray(char szCmd[3], short iIndex, const int iVal)
      * \brief send EoE array command.
@@ -80,7 +80,7 @@ public:
      *  \param iVal integer value to set.
      * \return 0 on success otherwise error (<0).
      */
-    ELMO_INT32 ElmoSetArray(ELMO_INT8 cCmd[3], short iIndex, const ELMO_INT32 iVal)throw (CMMCException);
+    ELMO_INT32 ElmoSetArray(ELMO_INT8 cCmd[3], short iIndex, const ELMO_INT32 iVal);
 
     /**! \fn ElmoSetArray(char szCmd[3], short iIndex, const int fVal)
      * \brief send EoE array command.
@@ -89,7 +89,7 @@ public:
      *  \param fVal real value to set.
      * \return 0 on success otherwise error (<0).
      */
-    ELMO_INT32 ElmoSetArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex, const ELMO_FLOAT fVal)throw (CMMCException);
+    ELMO_INT32 ElmoSetArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex, const ELMO_FLOAT fVal);
 
     /*! \fn ElmoSetParameter(char szCmd[3], const int iVal)
     * \brief sets parameter of type int.
@@ -97,7 +97,7 @@ public:
     * \param iVal integer value to set.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoSetParameter(ELMO_INT8 cCmd[3], const ELMO_INT32 iVal)throw (CMMCException);
+    ELMO_INT32 ElmoSetParameter(ELMO_INT8 cCmd[3], const ELMO_INT32 iVal);
 
     /*! \fn ElmoSetParameter(char szCmd[3], const int fVal)
     * \brief sets parameter of type float.
@@ -105,7 +105,7 @@ public:
     * \param fVal float value to set.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoSetParameter(ELMO_INT8 cCmd[3], const ELMO_FLOAT fVal)throw (CMMCException);
+    ELMO_INT32 ElmoSetParameter(ELMO_INT8 cCmd[3], const ELMO_FLOAT fVal);
 
     /*! \fn ElmoGetAsyncArray(char szCmd[3], short iIndex, int& fVal)
     * \brief sends asynchronous array command to get EoE parameter.
@@ -115,7 +115,7 @@ public:
     * \param iIndex index to array cell.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoGetAsyncArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex)throw (CMMCException);
+    ELMO_INT32 ElmoGetAsyncArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex);
 
     /*! \fn ElmoGetAsyncParameter(char szCmd[3])
     * \brief sends asynchronous command to get EoE parameter.
@@ -124,7 +124,7 @@ public:
     * \param szCmd string command.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoGetAsyncParameter(ELMO_INT8 cCmd[3])throw (CMMCException);
+    ELMO_INT32 ElmoGetAsyncParameter(ELMO_INT8 cCmd[3]);
 
     /*! \fn ElmoGetArray(char szCmd[3], short iIndex, int& iVal)
     * \brief sends command to get EoE parameter of type integer.
@@ -133,7 +133,7 @@ public:
     * \param iVal reference for returned value.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoGetArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex, ELMO_INT32 & iVal)throw (CMMCException);
+    ELMO_INT32 ElmoGetArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex, ELMO_INT32 & iVal);
 
     /*! \fn ElmoGetArray(char szCmd[3], short iIndex, int& iVal)
     * \brief sends command to get EoE parameter of type float.
@@ -142,7 +142,7 @@ public:
     * \param fVal reference for returned value.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoGetArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex, ELMO_FLOAT & fVal)throw (CMMCException);
+    ELMO_INT32 ElmoGetArray(ELMO_INT8 cCmd[3], ELMO_INT16 iIndex, ELMO_FLOAT & fVal);
 
     /*! \fn ElmoGetParameter(char szCmd[3], int& iVal)
     * \brief gets EoE parameter of type integer.
@@ -150,7 +150,7 @@ public:
     * \param iVal reference for returned value.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoGetParameter(ELMO_INT8 cCmd[3], ELMO_INT32 & iVal)throw (CMMCException);
+    ELMO_INT32 ElmoGetParameter(ELMO_INT8 cCmd[3], ELMO_INT32 & iVal);
 
     /*! \fn ElmoGetParameter(char szCmd[3], float& fVal)
     * \brief gets EoE parameter of type float.
@@ -158,7 +158,7 @@ public:
     * \param fVal reference for returned value.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoGetParameter(ELMO_INT8 cCmd[3], ELMO_FLOAT & fVal)throw (CMMCException);
+    ELMO_INT32 ElmoGetParameter(ELMO_INT8 cCmd[3], ELMO_FLOAT & fVal);
 
     /*! \fn ElmoGetParameter(char szCmd[3], char szVal[], int iSize)
     * \brief gets EoE parameter of type string.
@@ -167,7 +167,7 @@ public:
     * \param iSize size of szVal.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoGetParameter(ELMO_INT8 szCmd[3], ELMO_INT8 szVal[], ELMO_INT32 iSize)throw (CMMCException);
+    ELMO_INT32 ElmoGetParameter(ELMO_INT8 szCmd[3], ELMO_INT8 szVal[], ELMO_INT32 iSize);
 
     /*! \fn ElmoReadData(char* cBuffer, int iSize)
     * \brief read EoE response from driver and search for ';' suffix
@@ -176,7 +176,7 @@ public:
     * \param iSize expected response message length.
     * \return   return number of read characters - 0 if none.
     */
-    ELMO_INT32 ElmoReadData(ELMO_PINT8 cBuffer, ELMO_INT32 iSize)throw (CMMCException);
+    ELMO_INT32 ElmoReadData(ELMO_PINT8 cBuffer, ELMO_INT32 iSize);
 
     /**! \fn ElmoReadData(int& iValue)
      * \brief read EoE data and set iValue accordingly.
@@ -197,14 +197,14 @@ public:
     * \param szCmd string command.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoCall(const ELMO_INT8 szCmd[3])throw (CMMCException);
+    ELMO_INT32 ElmoCall(const ELMO_INT8 szCmd[3]);
 
     /*! \fn ElmoCallAsync(const char szCmd[3])
     * \brief sends EoE command for execution.
     * \param szCmd string command.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoCallAsync(const ELMO_INT8 szCmd[3])throw (CMMCException);
+    ELMO_INT32 ElmoCallAsync(const ELMO_INT8 szCmd[3]);
 
     /*! \fn ElmoAck(char* szBuffer, int iSize)
     * \brief checks wether or not a previous EoE command is acknowlaged.
@@ -212,21 +212,21 @@ public:
     * \param iSize buffer size - number of bytes to store on success.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoAck(ELMO_PINT8 szBuffer, ELMO_INT32 iSize)throw (CMMCException);
+    ELMO_INT32 ElmoAck(ELMO_PINT8 szBuffer, ELMO_INT32 iSize);
 
     /*! \fn ElmoExecuteLabel(const char *szCmd)
     * \brief sends EoE command for user program execution.
     * \param szCmd string command.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoExecuteLabelAsync(const ELMO_INT8* szCmd)throw (CMMCException);
+    ELMO_INT32 ElmoExecuteLabelAsync(const ELMO_INT8* szCmd);
 
     /*! \fn ElmoExecuteLabelAsync(const char *szCmd)
     * \brief sends EoE command for user program execution.
     * \param szCmd string command.
     * \return 0 on success otherwise error (<0).
     */
-    ELMO_INT32 ElmoExecuteLabel(const ELMO_INT8* szCmd)throw (CMMCException);
+    ELMO_INT32 ElmoExecuteLabel(const ELMO_INT8* szCmd);
 
 protected:
     /*! \fn GetAck(char* cBuffer, int iSize)
@@ -235,7 +235,7 @@ protected:
     * \param iSize expected response message length.
     * \return   return number of read characters - 0 if none.
     */
-    ELMO_INT32 GetAck(ELMO_PINT8 cBuffer, ELMO_INT32 iSize)throw (CMMCException);
+    ELMO_INT32 GetAck(ELMO_PINT8 cBuffer, ELMO_INT32 iSize);
 
     /**! \fn ParseResult(char *szResult, int& iVal)
      * \brief parses read string and set fVal with accordance.
@@ -263,10 +263,10 @@ protected:
     ELMO_INT32 ParseResult(ELMO_PINT8 szResult, ELMO_INT8 szRetVal[], ELMO_INT32 iSize);
 
 private:
-    ELMO_INT32 InitSemSyncDrvIo    (void) throw (CMMCException);
-    ELMO_INT32 DestroySemSyncDrvIo (void) throw (CMMCException);
-    ELMO_INT32 TakeSemSyncDrvIo    (void) throw (CMMCException);
-    ELMO_INT32 ReleaseSemSyncDrvIo (void) throw (CMMCException);
+    ELMO_INT32 InitSemSyncDrvIo    (void) ;
+    ELMO_INT32 DestroySemSyncDrvIo (void) ;
+    ELMO_INT32 TakeSemSyncDrvIo    (void) ;
+    ELMO_INT32 ReleaseSemSyncDrvIo (void) ;
 
 private:
     ELMO_LINT32 _lTimeOut;

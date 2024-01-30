@@ -19,29 +19,29 @@ public:
     ~CMMCHostComm() {}
 
     inline void MbusSetConnection(MMC_CONNECT_HNDL uiConnHndl) {m_uiConnHndl = uiConnHndl;}
-    void MbusStartServer(MMC_CONNECT_HNDL uiConnHndl, ELMO_UINT16 usID) throw (CMMCException);
-    void MbusStopServer() throw (CMMCException);
-    void MbusReadHoldingRegisterTable(int startRef, int refCnt, MMC_MODBUSREADHOLDINGREGISTERSTABLE_OUT& stOutParams) throw (CMMCException);
-    void MbusWriteHoldingRegisterTable(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams) throw (CMMCException);
-    bool MbusIsRunning(MMC_CONNECT_HNDL uiConnHndl = NULL) throw (CMMCException);
-    void MbusReadCoilsTable(ELMO_INT32 startRef, ELMO_INT32 refCnt, MMC_MODBUSREADCOILS_OUT& stOutParams) throw (CMMCException);
-    void MbusWriteCoilsTable(MMC_MODBUSWRITECOILS_IN& stInParams) throw (CMMCException);
-    void MbusReadInputsTable(ELMO_INT32 startRef, ELMO_INT32 refCnt, MMC_MODBUSREADINPUTS_OUT& stOutParams) throw (CMMCException);
+    void MbusStartServer(MMC_CONNECT_HNDL uiConnHndl, ELMO_UINT16 usID) ;
+    void MbusStopServer() ;
+    void MbusReadHoldingRegisterTable(int startRef, int refCnt, MMC_MODBUSREADHOLDINGREGISTERSTABLE_OUT& stOutParams) ;
+    void MbusWriteHoldingRegisterTable(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams) ;
+    bool MbusIsRunning(MMC_CONNECT_HNDL uiConnHndl = NULL) ;
+    void MbusReadCoilsTable(ELMO_INT32 startRef, ELMO_INT32 refCnt, MMC_MODBUSREADCOILS_OUT& stOutParams) ;
+    void MbusWriteCoilsTable(MMC_MODBUSWRITECOILS_IN& stInParams) ;
+    void MbusReadInputsTable(ELMO_INT32 startRef, ELMO_INT32 refCnt, MMC_MODBUSREADINPUTS_OUT& stOutParams) ;
 
-    void SetModbusLong(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams, ELMO_INT32 iOffset, ELMO_LINT32 lValue) throw (CMMCException);
-    void SetModbus(ELMO_INT32 iOffset, ELMO_LINT32 lValue) throw (CMMCException);
-    void SetModbus(ELMO_INT32 iOffset, ELMO_FLOAT fValue) throw (CMMCException);
-    void SetModbus(ELMO_INT32 iOffset, ELMO_INT16 sValue) throw (CMMCException);
+    void SetModbusLong(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams, ELMO_INT32 iOffset, ELMO_LINT32 lValue) ;
+    void SetModbus(ELMO_INT32 iOffset, ELMO_LINT32 lValue) ;
+    void SetModbus(ELMO_INT32 iOffset, ELMO_FLOAT fValue) ;
+    void SetModbus(ELMO_INT32 iOffset, ELMO_INT16 sValue) ;
 
-    void SetModbusLongSwapped(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams, ELMO_INT32 iOffset, ELMO_LINT32 lPos) throw (CMMCException);
-    void SetModbusShort(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams, ELMO_INT32 iOffset, ELMO_INT16 sPos) throw (CMMCException);
-    void SetModbusFloat(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams, ELMO_INT32 iOffset, ELMO_FLOAT fPos) throw (CMMCException);
-    void SetModbusFloatSwapped(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams, ELMO_INT32 iOffset, ELMO_FLOAT fPos) throw (CMMCException);
-    void SetModbus(ELMO_INT32 iOffset, ELMO_INT32 iRefCount, CMMCModbusBuffer& stInParams) throw (CMMCException);
-    void SetModbus(ELMO_INT32 iOffset, ELMO_INT32 iRefCount, CMMCModbusSwapBuffer& stInParams) throw (CMMCException);
+    void SetModbusLongSwapped(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams, ELMO_INT32 iOffset, ELMO_LINT32 lPos) ;
+    void SetModbusShort(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams, ELMO_INT32 iOffset, ELMO_INT16 sPos) ;
+    void SetModbusFloat(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams, ELMO_INT32 iOffset, ELMO_FLOAT fPos) ;
+    void SetModbusFloatSwapped(MMC_MODBUSWRITEHOLDINGREGISTERSTABLE_IN& stInParams, ELMO_INT32 iOffset, ELMO_FLOAT fPos) ;
+    void SetModbus(ELMO_INT32 iOffset, ELMO_INT32 iRefCount, CMMCModbusBuffer& stInParams) ;
+    void SetModbus(ELMO_INT32 iOffset, ELMO_INT32 iRefCount, CMMCModbusSwapBuffer& stInParams) ;
 
-    void GetModbus(ELMO_INT32 iOffset, ELMO_INT32 iRefCount, CMMCModbusBuffer& stOutParams) throw (CMMCException);
-    void GetModbus(ELMO_INT32 iOffset, ELMO_INT32 iRefCount, CMMCModbusSwapBuffer& stOutParams) throw (CMMCException);
+    void GetModbus(ELMO_INT32 iOffset, ELMO_INT32 iRefCount, CMMCModbusBuffer& stOutParams) ;
+    void GetModbus(ELMO_INT32 iOffset, ELMO_INT32 iRefCount, CMMCModbusSwapBuffer& stOutParams) ;
 
 
 protected:

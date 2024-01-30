@@ -35,10 +35,10 @@ public:
     void SetDefaultParameters();
     void SetDefaultParameters(MMC_CONFIGBULKREAD_IN stConfigBulkReadParams);
 
-    void Config() throw (CMMCException);
-    void Config(MMC_CONFIGBULKREAD_IN stCfgBulkReadIn) throw (CMMCException);
+    void Config() ;
+    void Config(MMC_CONFIGBULKREAD_IN stCfgBulkReadIn) ;
 
-    void BulkRead() throw (CMMCException);
+    void BulkRead() ;
     void SetConnectionHandle(MMC_CONNECT_HNDL hConnectHandle) {m_hConnectHandle = hConnectHandle;}
 
     ELMO_FLOAT m_fFactorsArray[NC_MAX_BULK_READ_READABLE_PACKET_SIZE];
@@ -51,7 +51,7 @@ public:
 
 private:
 
-    ELMO_INT32 GetAxesNum() throw (CMMCException);
+    ELMO_INT32 GetAxesNum() ;
     MMC_CONNECT_HNDL m_hConnectHandle;
     NC_BULKREAD_CONFIG_ENUM m_eConfiguration;
     NC_BULKREAD_PRESET_ENUM m_ePreset;
