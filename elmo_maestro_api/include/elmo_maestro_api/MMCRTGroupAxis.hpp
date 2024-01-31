@@ -23,13 +23,13 @@ public:
     CMMCRTGroupAxis();
     CMMCRTGroupAxis(CMMCGroupAxis& axis);
 
-    void InitAxisData(const ELMO_PINT8 cName, MMC_CONNECT_HNDL uHandle);
+    void InitAxisData(const ELMO_PINT8 cName, MMC_CONNECT_HNDL uHandle) ;
 
     void GetPos(ELMO_PDOUBLE dArr, NC_AXIS_IN_GROUP_TYPE_ENUM_EX startIndex, NC_AXIS_IN_GROUP_TYPE_ENUM_EX endIndex);
     void GetVel(ELMO_PDOUBLE dArr, NC_AXIS_IN_GROUP_TYPE_ENUM_EX startIndex, NC_AXIS_IN_GROUP_TYPE_ENUM_EX endIndex);
     
     void GetACDC(ELMO_PDOUBLE dArr, NC_AXIS_IN_GROUP_TYPE_ENUM_EX startIndex, NC_AXIS_IN_GROUP_TYPE_ENUM_EX endIndex);
-    ELMO_UINT32 GetPLCOpenStatus();
+    ELMO_UINT32 GetPLCOpenStatus() ;
     void GetVectorVel(ELMO_PDOUBLE dValue);
 
 protected:

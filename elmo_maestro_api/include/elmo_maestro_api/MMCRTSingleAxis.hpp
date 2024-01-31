@@ -56,14 +56,14 @@ public:
     CMMCRTSingleAxis(CMMCSingleAxis& axis);
 
     void InitAxisData(const ELMO_INT8* cName, MMC_CONNECT_HNDL uHandle) ;
-    void SetUser607A(ELMO_INT32  iUser607Aval);
-    void SetUser60FF(ELMO_INT32  iUser60FFval);
-    void SetUser60B1(ELMO_INT32  iUser60B1val);
-    void SetUser60B2(ELMO_DOUBLE iUser60B2val);
-    void SetUser6071(ELMO_DOUBLE dUser6071val);
-    void SetUserMB1 (ELMO_INT32      iUserMB1);
-    void SetUserMB2 (ELMO_INT32      iUserMB2);
-    void SetUserCW  (ELMO_UINT16  usUserCWval);
+    void SetUser607A(ELMO_INT32  iUser607Aval)  ;
+    void SetUser60FF(ELMO_INT32  iUser60FFval)  ;
+    void SetUser60B1(ELMO_INT32  iUser60B1val)  ;
+    void SetUser60B2(ELMO_DOUBLE iUser60B2val)  ;
+    void SetUser6071(ELMO_DOUBLE dUser6071val)  ;
+    void SetUserMB1 (ELMO_INT32      iUserMB1)  ;
+    void SetUserMB2 (ELMO_INT32      iUserMB2)  ;
+    void SetUserCW  (ELMO_UINT16  usUserCWval)  ;
 
 
     ELMO_INT32      GetUser607A()       ;

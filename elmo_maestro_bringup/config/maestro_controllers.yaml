@@ -1,0 +1,23 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 10 # Hz
+
+    maestro_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    maestro_forward_velocity_controller:
+      type: forward_command_controller/ForwardCommandController
+
+maestro_forward_velocity_controller:
+  ros__parameters:
+    joints:
+      - joint1
+    interface_name: velocity
+
+maestro_state_broadcaster:
+  ros__parameters:
+    use_local_topics: True
+    joints:
+      - joint1
+    interface_name:
+      - velocity
