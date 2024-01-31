@@ -159,7 +159,9 @@ hardware_interface::return_type ElmoMaestroHardwareInterface::write(
   RCLCPP_INFO(
     rclcpp::get_logger("ElmoMaestroHardwareInterface"), "got command %.5f for joint %s",
     hw_joint_command_, info_.joints[0].name.c_str());
-  axes_[0].MoveVelocity(hw_joint_command_);  // uint: cnt/sec ------------- 24cnt/r
+
+  // uint: cnt/sec ------------- 24cnt/r
+  axes_[0].MoveVelocity(hw_joint_command_, MC_ABORTING_MODE);
   return hardware_interface::return_type::OK;
 }
 

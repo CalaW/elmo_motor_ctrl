@@ -52,12 +52,14 @@ int main()
     axes[0].m_fAcceleration = 1000;
     axes[0].m_fDeceleration = 10000;
     axes[0].m_fVelocity = 1000;
+    auto buffer_mode = MC_ABORTING_MODE;
 
-    axes[0].MoveVelocity(0);  // uint: cnt/sec ------------- 24cnt/r
+    // uint: cnt/sec ------------- 24cnt/r
+    axes[0].MoveVelocity(0, buffer_mode);
+    sleep(3);
+    axes[0].MoveVelocity(1000, buffer_mode);
     sleep(5);
-    axes[0].MoveVelocity(1000);  // uint: cnt/sec ------------- 24cnt/r
-    sleep(5);
-    axes[0].MoveVelocity(500);  // uint: cnt/sec ------------- 24cnt/r
+    axes[0].MoveVelocity(500, buffer_mode);
     sleep(5);
 
     // stop axis wait till its in a 'standstill' state
