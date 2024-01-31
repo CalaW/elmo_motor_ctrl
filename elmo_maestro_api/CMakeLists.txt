@@ -5,10 +5,10 @@ if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
 endif()
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14) # Need C++14 for lib to compile
+  set(CMAKE_CXX_STANDARD 17) # Need C++14 for lib to compile
 endif()
 
-set(CMAKE_CXX_FLAGS "-O3 -Wall -fPIC -no-pie -pthread")
+# set(CMAKE_CXX_FLAGS "-O3 -Wall -fPIC -no-pie -pthread")
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -20,8 +20,10 @@ find_package(ament_cmake REQUIRED)
 
 set(
   maestro_Libs
-  ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMC_APP_LinuxRpc64.a
-  ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMCPP_LinuxRpc64.a
+  # ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMC_APP_LinuxRpc64.a
+  # ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMCPP_LinuxRpc64.a
+  ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMC_APP_LinuxRpc64.so
+  ${CMAKE_CURRENT_SOURCE_DIR}/lib/libMMCPP_LinuxRpc64.so
 )
 
 add_library(${PROJECT_NAME} INTERFACE)
@@ -29,8 +31,10 @@ target_include_directories(${PROJECT_NAME} INTERFACE
   $<BUILD_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   $<INSTALL_INTERFACE:include>)
 target_link_libraries(${PROJECT_NAME} INTERFACE
-  ${CMAKE_INSTALL_PREFIX}/lib/libMMC_APP_LinuxRpc64.a
-  ${CMAKE_INSTALL_PREFIX}/lib/libMMCPP_LinuxRpc64.a)
+  # ${CMAKE_INSTALL_PREFIX}/lib/libMMC_APP_LinuxRpc64.a
+  # ${CMAKE_INSTALL_PREFIX}/lib/libMMCPP_LinuxRpc64.a
+  ${CMAKE_INSTALL_PREFIX}/lib/libMMC_APP_LinuxRpc64.so
+  ${CMAKE_INSTALL_PREFIX}/lib/libMMCPP_LinuxRpc64.so)
   # ${CMAKE_THREAD_LIBS_INIT})
 
 install(

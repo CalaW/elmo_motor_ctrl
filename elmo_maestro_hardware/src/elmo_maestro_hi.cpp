@@ -124,7 +124,7 @@ void ElmoMaestroHardwareInterface::elmoInit()
       }
     }
   } catch (CMMCException exp) {
-    cout << "init failed!!" << exp.what() << endl;
+    cout << "init failed!!" << exp.what() << std::endl;
     exit(1);
   }
   std::cout << std::endl;

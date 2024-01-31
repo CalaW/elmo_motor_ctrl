@@ -31,14 +31,14 @@ public:
     */
     ~CMMCNode();
 
-    virtual void Reset()        throw(CMMCException);
-    virtual void ResetAsync()   throw(CMMCException);
+    virtual void Reset()        ;
+    virtual void ResetAsync()   ;
     /*! \fn int ReadStatus()
     *   \brief This function gets axis status for specific axis.
     *   \return return - status on success, otherwise throws CMMCException.
     */
-    virtual ELMO_ULINT32 ReadStatus() throw (CMMCException);
-    virtual ELMO_ULINT32 ReadStatus(ELMO_UINT16 & usAxisErrorID, ELMO_UINT16 & usStatusWord) throw (CMMCException);
+    virtual ELMO_ULINT32 ReadStatus() ;
+    virtual ELMO_ULINT32 ReadStatus(ELMO_UINT16 & usAxisErrorID, ELMO_UINT16 & usStatusWord) ;
     //
     /*! \fn int  MMC_SendSdoCmd(
     * \brief This function send SDO message command.*/
@@ -47,7 +47,7 @@ public:
             ELMO_UINT8   ucSubIndex,
             ELMO_ULINT32 ulDataLength,
             ELMO_UINT16  usIndex,
-            ELMO_UINT16  usSlaveID) throw (CMMCException);
+            ELMO_UINT16  usSlaveID) ;
 
     /*! \fn int  SendSdoDownloadExCmd(
     * \brief This function send download SDO message up to 80 bytes command.*/
@@ -55,7 +55,7 @@ public:
         SEND_SDO_DATA_EX *uData,        
         ELMO_UINT16 usIndex,
         ELMO_UINT8  ucSubIndex,      
-        ELMO_UINT8  ucDataLength) throw (CMMCException);
+        ELMO_UINT8  ucDataLength) ;
 
     /*! \fn int  SendSdoUploadExCmd(
     * \brief This function send upload SDO message up to 80 bytes command.*/
@@ -63,7 +63,7 @@ public:
         SEND_SDO_DATA_EX *uData,
         ELMO_UINT16 usIndex,
         ELMO_UINT8  ucSubIndex,
-        ELMO_UINT8  ucDataLength) throw (CMMCException);
+        ELMO_UINT8  ucDataLength) ;
 
     /*! \fn int  SendSdoUploadAsyncExCmd(
     * \brief This function send upload SDO message up to 80 bytes command.*/
@@ -71,7 +71,7 @@ public:
         SEND_SDO_DATA_EX *uData,
         ELMO_UINT16 usIndex,
         ELMO_UINT8  ucSubIndex,
-        ELMO_UINT8  ucDataLength) throw (CMMCException);
+        ELMO_UINT8  ucDataLength) ;
 
     /*! \fn int  RetrieveSdoUploadAsyncExCmd(
     * \brief This function send upload SDO message up to 80 bytes command.*/
@@ -79,7 +79,7 @@ public:
         SEND_SDO_DATA_EX *uData,
         ELMO_UINT16 usIndex,
         ELMO_UINT8  ucSubIndex,
-        ELMO_UINT8  ucDataLength) throw (CMMCException);
+        ELMO_UINT8  ucDataLength) ;
 
     //
     /*! \fn int  unsigned(
@@ -88,7 +88,7 @@ public:
             ELMO_UINT8 ucSubIndex,
             ELMO_ULINT32 ulDataLength,
             ELMO_UINT16  usIndex,
-            ELMO_UINT16  usSlaveID) throw (CMMCException);
+            ELMO_UINT16  usSlaveID) ;
 
 
     //
@@ -97,7 +97,7 @@ public:
     virtual ELMO_LINT32 SendSdoUpload(ELMO_UINT8 ucSubIndex,
             ELMO_ULINT32 ulDataLength,
             ELMO_UINT16  usIndex,
-            ELMO_UINT16  usSlaveID) throw (CMMCException);
+            ELMO_UINT16  usSlaveID) ;
 
     //
     /*! \fn int  SendSdoUpload(
@@ -105,27 +105,27 @@ public:
     virtual void SendSdoUploadAsync(ELMO_UINT8 ucSubIndex,
             ELMO_ULINT32 ulDataLength,
             ELMO_UINT16  usIndex,
-            ELMO_UINT16  usSlaveID) throw (CMMCException);
+            ELMO_UINT16  usSlaveID) ;
 
     //
     /*! \fn int  SendSdoUpload(
     * \brief This function send SDO message command.*/
-    virtual void RetreiveSdoUploadAsync(ELMO_LINT32 & lData) throw (CMMCException);
+    virtual void RetreiveSdoUploadAsync(ELMO_LINT32 & lData) ;
 
     //
     /*! \fn void PDOGeneralRead()
     *   \brief This function gets General PDO from the axis (this PDO defined by the user).
     *   \return - Return the actual value of the PDO, ulliVal variable inserted by reference.
     */
-    virtual MMCPPULL_T PDOGeneralRead(ELMO_UINT8 ucParam) throw(CMMCException);
+    virtual MMCPPULL_T PDOGeneralRead(ELMO_UINT8 ucParam) ;
     //
     //
     /*! \fn void PDOGeneralWrite()
     *   \brief This function sets General PDO from the axis (this PDO defined by the user).
     *   \return - void.
     */
-    virtual void PDOGeneralWrite(ELMO_UINT8 ucParam,MMCPPULL_T ulliVal) throw(CMMCException);
-    virtual void PDOGeneralWrite(ELMO_UINT8 ucParam,unGeneralPDOWriteData DataUnion) throw(CMMCException);
+    virtual void PDOGeneralWrite(ELMO_UINT8 ucParam,MMCPPULL_T ulliVal) ;
+    virtual void PDOGeneralWrite(ELMO_UINT8 ucParam,unGeneralPDOWriteData DataUnion) ;
 
     //
     /*! \fn void GetPDOInfo()
@@ -136,57 +136,57 @@ public:
     *   OUT ucPDOCommEventGroup - PDO Current group (1 .... 17)
     *   \return - void.
     */
-    virtual void GetPDOInfo(ELMO_UINT8 uiPDONumber, ELMO_INT32 &iPDOEventMode, ELMO_UINT32 &uiCommParamEventPDO, ELMO_UINT16 &usEventTimerPDO, ELMO_UINT8 &ucRPDOCommType,ELMO_UINT8 &ucTPDOCommType, ELMO_UINT8 &ucTPDOCommEventGroup, ELMO_UINT8 &ucRPDOCommEventGroup, ELMO_UINT8 &ucSubIndexTPDO, ELMO_UINT8 &ucSubindexRPDO) throw(CMMCException);
+    virtual void GetPDOInfo(ELMO_UINT8 uiPDONumber, ELMO_INT32 &iPDOEventMode, ELMO_UINT32 &uiCommParamEventPDO, ELMO_UINT16 &usEventTimerPDO, ELMO_UINT8 &ucRPDOCommType,ELMO_UINT8 &ucTPDOCommType, ELMO_UINT8 &ucTPDOCommEventGroup, ELMO_UINT8 &ucRPDOCommEventGroup, ELMO_UINT8 &ucSubIndexTPDO, ELMO_UINT8 &ucSubindexRPDO) ;
 
-    virtual void        SetBoolParameter(ELMO_LINT32 lValue, MMC_PARAMETER_LIST_ENUM eNumber, ELMO_INT32 iIndex) throw (CMMCException);
-    virtual void        SetParameter(ELMO_DOUBLE dbValue, MMC_PARAMETER_LIST_ENUM eNumber, ELMO_INT32 iIndex) throw (CMMCException);
-    virtual ELMO_LINT32  GetBoolParameter(MMC_PARAMETER_LIST_ENUM eNumber, ELMO_INT32 iIndex) throw (CMMCException);
-    virtual ELMO_DOUBLE  GetParameter(MMC_PARAMETER_LIST_ENUM eNumber, ELMO_INT32 iIndex) throw (CMMCException);
-    virtual void        ConfigPDOEventMode(ELMO_UINT8 ucPDOEventMode, PDO_NUMBER_ENUM ePDONum = PDO_NUM_3) throw (CMMCException);
-    virtual void        ConfigPDOEventMode(MC_PDO_EVENT_NOTIF_MODE_ENUM ePDOEventMode, PDO_NUMBER_ENUM ePDONum = PDO_NUM_3) throw (CMMCException);
-
-
-    virtual ELMO_UINT16 GetAxisError(ELMO_PUINT16 usLastEmergencyErrCode) throw (CMMCException);
+    virtual void        SetBoolParameter(ELMO_LINT32 lValue, MMC_PARAMETER_LIST_ENUM eNumber, ELMO_INT32 iIndex) ;
+    virtual void        SetParameter(ELMO_DOUBLE dbValue, MMC_PARAMETER_LIST_ENUM eNumber, ELMO_INT32 iIndex) ;
+    virtual ELMO_LINT32  GetBoolParameter(MMC_PARAMETER_LIST_ENUM eNumber, ELMO_INT32 iIndex) ;
+    virtual ELMO_DOUBLE  GetParameter(MMC_PARAMETER_LIST_ENUM eNumber, ELMO_INT32 iIndex) ;
+    virtual void        ConfigPDOEventMode(ELMO_UINT8 ucPDOEventMode, PDO_NUMBER_ENUM ePDONum = PDO_NUM_3) ;
+    virtual void        ConfigPDOEventMode(MC_PDO_EVENT_NOTIF_MODE_ENUM ePDOEventMode, PDO_NUMBER_ENUM ePDONum = PDO_NUM_3) ;
 
 
-    virtual void EthercatWriteMemoryRange(ELMO_UINT16 usRegAddr, ELMO_UINT8 ucLength, ELMO_UINT8 pData[ETHERCAT_MEMORY_WRITE_MAX_SIZE]) throw (CMMCException);
+    virtual ELMO_UINT16 GetAxisError(ELMO_PUINT16 usLastEmergencyErrCode) ;
 
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT8   ucByteLength, ELMO_UINT8 pRawData[PI_REG_VAR_SIZE]) throw (CMMCException);
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT16  usByteLength, ELMO_UINT8 pRawData[PI_LARGE_VAR_SIZE]) throw (CMMCException);
+
+    virtual void EthercatWriteMemoryRange(ELMO_UINT16 usRegAddr, ELMO_UINT8 ucLength, ELMO_UINT8 pData[ETHERCAT_MEMORY_WRITE_MAX_SIZE]) ;
+
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT8   ucByteLength, ELMO_UINT8 pRawData[PI_REG_VAR_SIZE]) ;
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT16  usByteLength, ELMO_UINT8 pRawData[PI_LARGE_VAR_SIZE]) ;
 //HH: See remark in cpp 'EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT8   ucData)'
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_BOOL    bData)  throw (CMMCException);
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_INT8    cData)  throw (CMMCException);
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_BOOL    bData)  ;
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_INT8    cData)  ;
 //HH: See remark in cpp 'EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT8   ucData)'
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT8   ucData) throw (CMMCException);
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT16  usData) throw (CMMCException);
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_INT16   sData)  throw (CMMCException);
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT32  uiData) throw (CMMCException);
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_INT32   iData)  throw (CMMCException);
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_FLOAT   fData)  throw (CMMCException);
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_DOUBLE  dbData) throw (CMMCException);
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT8   ucData) ;
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT16  usData) ;
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_INT16   sData)  ;
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT32  uiData) ;
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_INT32   iData)  ;
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_FLOAT   fData)  ;
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_DOUBLE  dbData) ;
     
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT64  ullData)throw (CMMCException);
-    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_INT64   llData) throw (CMMCException);
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT64  ullData);
+    virtual void EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_INT64   llData) ;
 
-    virtual void EthercatReadMemoryRange(ELMO_UINT16 usRegAddr,  ELMO_UINT8 ucLength, ELMO_UINT8 pData[ETHERCAT_MEMORY_READ_MAX_SIZE]) throw (CMMCException);
+    virtual void EthercatReadMemoryRange(ELMO_UINT16 usRegAddr,  ELMO_UINT8 ucLength, ELMO_UINT8 pData[ETHERCAT_MEMORY_READ_MAX_SIZE]) ;
 
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT8     ucByteLength, ELMO_UINT8 pRawData[PI_REG_VAR_SIZE]) throw (CMMCException);
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT16    usByteLength, ELMO_UINT8 pRawData[PI_LARGE_VAR_SIZE]) throw (CMMCException);
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT8     ucByteLength, ELMO_UINT8 pRawData[PI_REG_VAR_SIZE]) ;
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT16    usByteLength, ELMO_UINT8 pRawData[PI_LARGE_VAR_SIZE]) ;
 //HH: See remark in cpp 'EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT8   ucData)'
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_BOOL &    bData)  throw (CMMCException);
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_INT8 &    cData)  throw (CMMCException);
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_BOOL &    bData)  ;
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_INT8 &    cData)  ;
 //HH: See remark in cpp 'EthercatWritePIVar(ELMO_UINT16 usIndex, ELMO_UINT8   ucData)'
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT8 &   ucData) throw (CMMCException);
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT16 &  usData) throw (CMMCException);
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_INT16 &   sData)  throw (CMMCException);
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT32 &  uiData) throw (CMMCException);
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_INT32 &   iData)  throw (CMMCException);
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_FLOAT &   fData)  throw (CMMCException);
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_DOUBLE &  dbData) throw (CMMCException);
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT64 &  ullData)throw (CMMCException);
-    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_INT64  &  llData) throw (CMMCException);
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT8 &   ucData) ;
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT16 &  usData) ;
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_INT16 &   sData)  ;
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT32 &  uiData) ;
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_INT32 &   iData)  ;
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_FLOAT &   fData)  ;
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_DOUBLE &  dbData) ;
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_UINT64 &  ullData);
+    virtual void EthercatReadPIVar(ELMO_UINT16 usIndex, ELMO_UINT8 ucDirection, ELMO_INT64  &  llData) ;
     
-    virtual void EthercatPIVarInfo(ELMO_UINT16 usPIVarIndex, ELMO_UINT8 ucDirection, NC_PI_ENTRY &VarInfo) throw (CMMCException);
+    virtual void EthercatPIVarInfo(ELMO_UINT16 usPIVarIndex, ELMO_UINT8 ucDirection, NC_PI_ENTRY &VarInfo) ;
 
 };
 

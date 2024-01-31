@@ -31,7 +31,7 @@ public:
 	 * 			default is NULL for backward compatibility.
 	 * \return	0 on success, otherwise error or exception thrown.
 	 */
-	ELMO_INT32 LoadErrorCorrTable(MMC_LOADERRORTABLE_IN& stInParams, ELMO_PINT32 iErrLineNum=NULL) throw (CMMCException);
+	ELMO_INT32 LoadErrorCorrTable(MMC_LOADERRORTABLE_IN& stInParams, ELMO_PINT32 iErrLineNum=NULL) ;
 
 	/**
 	 * \fn	LoadErrorCorrTable(char pPathToETFile[NC_MAX_ET_FILE_PATH_LENGTH], NC_ERROR_TABLE_NUMBER eETNumber, double dMaxCorrectionDelta = 0)
@@ -43,7 +43,7 @@ public:
 	 * 			default is NULL for backward compatibility.
 	 * \return	0 on success, otherwise error or exception thrown.
 	 */
-	void LoadErrorCorrTable(ELMO_INT8 pPathToETFile[NC_MAX_ET_FILE_PATH_LENGTH], NC_ERROR_TABLE_NUMBER eETNumber, ELMO_DOUBLE dMaxCorrectionDelta = 0, ELMO_PINT32 iErrLineNum=NULL) throw (CMMCException);
+	void LoadErrorCorrTable(ELMO_INT8 pPathToETFile[NC_MAX_ET_FILE_PATH_LENGTH], NC_ERROR_TABLE_NUMBER eETNumber, ELMO_DOUBLE dMaxCorrectionDelta = 0, ELMO_PINT32 iErrLineNum=NULL) ;
 
 	/**
 	 * \fn	LoadErrorCorrTable(NC_ERROR_TABLE_NUMBER eETNumber, double dMaxCorrectionDelta = 0, int* iErrLineNum=NULL)
@@ -54,15 +54,15 @@ public:
 	 * 			default is NULL for backward compatibility.
 	 * \return	0 on success, otherwise error or exception thrown.
 	 */
-	void LoadErrorCorrTable(NC_ERROR_TABLE_NUMBER eETNumber, ELMO_DOUBLE dMaxCorrectionDelta = 0, ELMO_PINT32 iErrLineNum=NULL) throw (CMMCException);
+	void LoadErrorCorrTable(NC_ERROR_TABLE_NUMBER eETNumber, ELMO_DOUBLE dMaxCorrectionDelta = 0, ELMO_PINT32 iErrLineNum=NULL) ;
 
-    ELMO_INT32 UnloadErrorCorrTable (NC_ERROR_TABLE_NUMBER eTableNumber) throw (CMMCException);
-    ELMO_INT32 EnableErrorCorrTable (NC_ERROR_TABLE_NUMBER eTableNumber) throw (CMMCException);
-    ELMO_INT32 DisableErrorCorrTable(NC_ERROR_TABLE_NUMBER eTableNumber) throw (CMMCException);
+    ELMO_INT32 UnloadErrorCorrTable (NC_ERROR_TABLE_NUMBER eTableNumber) ;
+    ELMO_INT32 EnableErrorCorrTable (NC_ERROR_TABLE_NUMBER eTableNumber) ;
+    ELMO_INT32 DisableErrorCorrTable(NC_ERROR_TABLE_NUMBER eTableNumber) ;
 
     void GetErrorTableStatus(NC_ERROR_TABLE_NUMBER eTableNumber, MMC_GETERRORTABLESTATUS_OUT &stOutParams);
-    ELMO_BOOL IsTableEnabled(NC_ERROR_TABLE_NUMBER eETNumber) throw (CMMCException);
-    ELMO_BOOL  IsTableLoaded(NC_ERROR_TABLE_NUMBER eETNumber) throw (CMMCException);      
+    ELMO_BOOL IsTableEnabled(NC_ERROR_TABLE_NUMBER eETNumber) ;
+    ELMO_BOOL  IsTableLoaded(NC_ERROR_TABLE_NUMBER eETNumber) ;      
 
 private:
     MMC_CONNECT_HNDL m_uiConnHndl;

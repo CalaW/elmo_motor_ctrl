@@ -42,12 +42,12 @@ public:
     /*! \fn constructor()
     *   \brief constructor that receive PI VAR offset and direction.
     */
-    CMMCPIVar(MMC_CONNECT_HNDL uHandle, MMC_AXIS_REF_HNDL hAxisRef, ELMO_UINT16 usPIVarOffset, PI_DIRECTIONS eDirection ) throw (CMMCException);
+    CMMCPIVar(MMC_CONNECT_HNDL uHandle, MMC_AXIS_REF_HNDL hAxisRef, ELMO_UINT16 usPIVarOffset, PI_DIRECTIONS eDirection ) ;
 
     /*! \fn constructor()
     *   \brief constructor that receive PI VAR alias.
     */
-    CMMCPIVar(MMC_CONNECT_HNDL uHandle, MMC_AXIS_REF_HNDL hAxisRef, ELMO_INT8 alias[PI_ALIASING_LENGTH]) throw (CMMCException);
+    CMMCPIVar(MMC_CONNECT_HNDL uHandle, MMC_AXIS_REF_HNDL hAxisRef, ELMO_INT8 alias[PI_ALIASING_LENGTH]) ;
 
     /*! \fn destructor
     */
@@ -56,12 +56,12 @@ public:
     /*! \fn Init()
     *   \brief set inital value for class variable according to offset.
     */
-    virtual void Init(MMC_CONNECT_HNDL uHandle, MMC_AXIS_REF_HNDL hAxisRef, ELMO_UINT16 usPIVarOffset, PI_DIRECTIONS eDirection ) throw (CMMCException);
+    virtual void Init(MMC_CONNECT_HNDL uHandle, MMC_AXIS_REF_HNDL hAxisRef, ELMO_UINT16 usPIVarOffset, PI_DIRECTIONS eDirection ) ;
 
     /*! \fn Init()
     *   \brief set inital value for class variable according to alias.
     */
-    virtual void Init(MMC_CONNECT_HNDL uHandle, MMC_AXIS_REF_HNDL hAxisRef, ELMO_INT8 alias[PI_ALIASING_LENGTH]) throw (CMMCException);
+    virtual void Init(MMC_CONNECT_HNDL uHandle, MMC_AXIS_REF_HNDL hAxisRef, ELMO_INT8 alias[PI_ALIASING_LENGTH]) ;
 
     /*! \fn UnbindFromBulkRead()
     *   \brief remove the option of reading from bulkRead.
@@ -76,78 +76,78 @@ public:
     /*! \WritePI(bool bValue)
     *   \write the input argument value to PI var.
     */
-    virtual void WritePI(ELMO_BOOL bValue) throw (CMMCException);
+    virtual void WritePI(ELMO_BOOL bValue) ;
 
-	virtual void WritePI(ELMO_INT8 cValue) throw (CMMCException);
+	virtual void WritePI(ELMO_INT8 cValue) ;
 
-	virtual void WritePI(ELMO_UINT8 ucValue) throw (CMMCException);
+	virtual void WritePI(ELMO_UINT8 ucValue) ;
 
-	virtual void WritePI(ELMO_UINT16 usValue) throw (CMMCException);
+	virtual void WritePI(ELMO_UINT16 usValue) ;
 
-	virtual void WritePI(ELMO_INT16 sValue) throw (CMMCException);
+	virtual void WritePI(ELMO_INT16 sValue) ;
 
-	virtual void WritePI(ELMO_UINT32 uiValue) throw (CMMCException);
+	virtual void WritePI(ELMO_UINT32 uiValue) ;
 
-	virtual void WritePI(ELMO_INT32 iValue) throw (CMMCException);
+	virtual void WritePI(ELMO_INT32 iValue) ;
 
-	virtual void WritePI(ELMO_FLOAT fValue) throw (CMMCException);
+	virtual void WritePI(ELMO_FLOAT fValue) ;
 
-	virtual void WritePI(ELMO_PUINT8 ucValue, ELMO_INT32 iSize) throw (CMMCException);
-
-
+	virtual void WritePI(ELMO_PUINT8 ucValue, ELMO_INT32 iSize) ;
 
 
 
-    void WritePI(ELMO_UINT64 ullValue) throw (CMMCException);
 
-    void WritePI(ELMO_INT64  llValue) throw (CMMCException);
 
-    void WritePI(ELMO_DOUBLE dValue) throw (CMMCException);
+    void WritePI(ELMO_UINT64 ullValue) ;
+
+    void WritePI(ELMO_INT64  llValue) ;
+
+    void WritePI(ELMO_DOUBLE dValue) ;
 
 
     /*! \ReadPI(bool &bValue)
     *   \Read the value of PI variable.
     *   \The value will return in the bValue
     */
-	virtual void ReadPI(ELMO_BOOL &bValue) throw (CMMCException);
+	virtual void ReadPI(ELMO_BOOL &bValue) ;
 
-	virtual void ReadPI(ELMO_INT8 &cValue) throw (CMMCException);
+	virtual void ReadPI(ELMO_INT8 &cValue) ;
 
-	virtual void ReadPI(ELMO_UINT8 &ucValue) throw (CMMCException);
+	virtual void ReadPI(ELMO_UINT8 &ucValue) ;
 
-	virtual void ReadPI(ELMO_INT16 &sValue) throw (CMMCException);
+	virtual void ReadPI(ELMO_INT16 &sValue) ;
 
-	virtual void ReadPI(ELMO_UINT16 &usValue) throw (CMMCException);
+	virtual void ReadPI(ELMO_UINT16 &usValue) ;
 
-	virtual void ReadPI(ELMO_INT32 &iValue) throw (CMMCException);
+	virtual void ReadPI(ELMO_INT32 &iValue) ;
 
-	virtual void ReadPI(ELMO_UINT32 &uiValue) throw (CMMCException);
+	virtual void ReadPI(ELMO_UINT32 &uiValue) ;
 
-	virtual void ReadPI(ELMO_FLOAT &fValue) throw (CMMCException);
+	virtual void ReadPI(ELMO_FLOAT &fValue) ;
 
-	virtual void ReadPI(ELMO_PUINT8 ucValue, ELMO_INT32 iSize) throw (CMMCException);
+	virtual void ReadPI(ELMO_PUINT8 ucValue, ELMO_INT32 iSize) ;
 
 
 
-    virtual void ReadPI(ELMO_INT64  &llValue) throw (CMMCException);
+    virtual void ReadPI(ELMO_INT64  &llValue) ;
 
-    virtual void ReadPI(ELMO_UINT64 &ullValue) throw (CMMCException);
+    virtual void ReadPI(ELMO_UINT64 &ullValue) ;
 
-	virtual void ReadPI(ELMO_DOUBLE &dValue) throw (CMMCException);
+	virtual void ReadPI(ELMO_DOUBLE &dValue) ;
 
     /*! \fn GetPIVarInfoByAlias()
     *   \brief gets the PI info according to the PI alaia.
     *   \char alias : the name of the PI
     *   \MMC_GETPIVARINFOBYALIAS_OUT &pOutParam - retrive the info data of the PI
     */
-    void GetPIVarInfoByAlias(ELMO_INT8 alias[PI_ALIASING_LENGTH],MMC_GETPIVARINFOBYALIAS_OUT &pOutParam) throw (CMMCException);
+    void GetPIVarInfoByAlias(ELMO_INT8 alias[PI_ALIASING_LENGTH],MMC_GETPIVARINFOBYALIAS_OUT &pOutParam) ;
 
     /*! \fn GetPIVarsRangeInfo()
     *   \brief gets the PI info of range of PI.
     *   \param MMC_GETPIVARSRANGEINFO_IN  pInParam
     *   \param  MMC_GETPIVARSRANGEINFO_OUT &pOutParam - retrive the info data of the PI
     */
-    void GetPIVarsRangeInfo(MMC_GETPIVARSRANGEINFO_IN  pInParam,MMC_GETPIVARSRANGEINFO_OUT &pOutParam) throw (CMMCException);
+    void GetPIVarsRangeInfo(MMC_GETPIVARSRANGEINFO_IN  pInParam,MMC_GETPIVARSRANGEINFO_OUT &pOutParam) ;
 
 protected:
 

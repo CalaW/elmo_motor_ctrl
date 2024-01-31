@@ -18,11 +18,11 @@ public:
 
     void SetConnHndl(MMC_CONNECT_HNDL uiConnHndl) {m_uiConnHndl = uiConnHndl;}
 
-    void ResetCommStatistics(MMC_RESETCOMMSTATISTICS_OUT& stOutParams) throw (CMMCException);
-    void ResetCommDiagnostics(MMC_RESETCOMMDIAGNOSTICS_OUT& stOutParams) throw (CMMCException);
-    void GetCommDiagnostics(MMC_GETCOMMDIAGNOSTICS_OUT& stOutParams) throw (CMMCException);
-    ELMO_INT32 GetCommStatistic(MMC_GETCOMMSTATISTICS_OUT& stOutParams) throw (CMMCException);
-    ELMO_INT32 GetNetworkInfo(MMC_NETWORKINFO_OUT& stOutParams) throw (CMMCException);
+    void ResetCommStatistics(MMC_RESETCOMMSTATISTICS_OUT& stOutParams) ;
+    void ResetCommDiagnostics(MMC_RESETCOMMDIAGNOSTICS_OUT& stOutParams) ;
+    void GetCommDiagnostics(MMC_GETCOMMDIAGNOSTICS_OUT& stOutParams) ;
+    ELMO_INT32 GetCommStatistic(MMC_GETCOMMSTATISTICS_OUT& stOutParams) ;
+    ELMO_INT32 GetNetworkInfo(MMC_NETWORKINFO_OUT& stOutParams) ;
     //
 private:
     MMC_CONNECT_HNDL m_uiConnHndl;                  /*!< communication session handler;                 */

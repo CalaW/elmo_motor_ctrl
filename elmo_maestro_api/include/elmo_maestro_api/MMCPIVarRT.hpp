@@ -34,44 +34,44 @@
         /*! \fn Init()
         *   \brief set inital value for class variable according to offset.
         */
-        virtual void Init(MMC_CONNECT_HNDL uHandle, MMC_AXIS_REF_HNDL hAxisRef, ELMO_UINT16 usPIVarOffset, PI_DIRECTIONS eDirection ) throw (CMMCException);
+        virtual void Init(MMC_CONNECT_HNDL uHandle, MMC_AXIS_REF_HNDL hAxisRef, ELMO_UINT16 usPIVarOffset, PI_DIRECTIONS eDirection ) ;
     
-        virtual void ReadPI(ELMO_BOOL& bValue) throw (CMMCException);
+        virtual void ReadPI(ELMO_BOOL& bValue) ;
     
-        virtual void ReadPI(ELMO_SINT8& cValue) throw (CMMCException);
+        virtual void ReadPI(ELMO_SINT8& cValue) ;
     
-        virtual void ReadPI(ELMO_UINT8& ucValue) throw (CMMCException);
+        virtual void ReadPI(ELMO_UINT8& ucValue) ;
     
-        virtual void ReadPI(ELMO_INT16& sValue) throw (CMMCException);
+        virtual void ReadPI(ELMO_INT16& sValue) ;
     
-        virtual void ReadPI(ELMO_UINT16& usValue) throw (CMMCException);
+        virtual void ReadPI(ELMO_UINT16& usValue) ;
     
-        virtual void ReadPI(ELMO_INT32& iValue) throw (CMMCException);
+        virtual void ReadPI(ELMO_INT32& iValue) ;
     
-        virtual void ReadPI(ELMO_UINT32& uiValue) throw (CMMCException);
+        virtual void ReadPI(ELMO_UINT32& uiValue) ;
     
-        virtual void ReadPI(ELMO_FLOAT& fValue) throw (CMMCException);
+        virtual void ReadPI(ELMO_FLOAT& fValue) ;
     
-        virtual void ReadPI(ELMO_DOUBLE& fValue) throw (CMMCException);
+        virtual void ReadPI(ELMO_DOUBLE& fValue) ;
     
     
-        virtual void WritePI(ELMO_BOOL bValue) throw (CMMCException);
+        virtual void WritePI(ELMO_BOOL bValue) ;
     
-        virtual void WritePI(ELMO_INT8 cValue) throw (CMMCException);
+        virtual void WritePI(ELMO_INT8 cValue) ;
     
-        virtual void WritePI(ELMO_UINT8 ucValue) throw (CMMCException);
+        virtual void WritePI(ELMO_UINT8 ucValue) ;
     
-        virtual void WritePI(ELMO_UINT16 usValue) throw (CMMCException);
+        virtual void WritePI(ELMO_UINT16 usValue) ;
     
-        virtual void WritePI(ELMO_INT16 sValue) throw (CMMCException);
+        virtual void WritePI(ELMO_INT16 sValue) ;
     
-        virtual void WritePI(ELMO_UINT32 uiValue) throw (CMMCException);
+        virtual void WritePI(ELMO_UINT32 uiValue) ;
     
-        virtual void WritePI(ELMO_INT32 iValue) throw (CMMCException);
+        virtual void WritePI(ELMO_INT32 iValue) ;
     
-        virtual void WritePI(float fValue) throw (CMMCException);
+        virtual void WritePI(float fValue) ;
     
-        virtual void WritePI(double dValue) throw (CMMCException);
+        virtual void WritePI(double dValue) ;
     
         ELMO_INT32 GetPIDirecton()  {return m_ePIDirection;}
         ELMO_INT32 GetNumOfPIIn()   {return m_uiNumberOfPIIn;}

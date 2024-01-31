@@ -318,7 +318,7 @@ public:
                     /* Be aware: 1. Default file name for read is different from defautl*/
                     /* name for save. 2. Even if file is open for update it not save    */
                     /* on exit (or close) but with explicit save command.               */
-    ELMO_INT32 Open(ELMO_PINT8 cFileName=(ELMO_PINT8)DEFAULT_XML_RFILE_NAME, ELMO_UINT32 uiFlags=UPXML_SET_DEF_REQ_FLG, ELMO_PINT8 cFilePath=(ELMO_PINT8)DEFAULT_XML_RFILE_PATH) throw (CMMCException);
+    ELMO_INT32 Open(ELMO_PINT8 cFileName=(ELMO_PINT8)DEFAULT_XML_RFILE_NAME, ELMO_UINT32 uiFlags=UPXML_SET_DEF_REQ_FLG, ELMO_PINT8 cFilePath=(ELMO_PINT8)DEFAULT_XML_RFILE_PATH) ;
 //                  /* Free XML resource */
     ELMO_INT32 Close();
                             /* Functions for Read Single parameter value *\
@@ -327,21 +327,21 @@ public:
                     /* Return ONE parameter of type Double */
     ELMO_INT32 Read  (   ELMO_PINT8   pLvl1Valu,      ELMO_PINT8   pLvl2Valu,      ELMO_PINT8 pLvl3Name,
                         ELMO_DOUBLE  &dRetVal,       ELMO_DOUBLE  dDefault,
-                        ELMO_DOUBLE  dMin=L_DBL_MIN,   ELMO_DOUBLE  dMax=L_DBL_MAX)               throw (CMMCException);
+                        ELMO_DOUBLE  dMin=L_DBL_MIN,   ELMO_DOUBLE  dMax=L_DBL_MAX)               ;
 //
                     /* Return ONE parameter of type Long */
     ELMO_INT32 Read  (   ELMO_PINT8   pLvl1Valu,      ELMO_PINT8   pLvl2Valu,      ELMO_PINT8 pLvl3Name,
                         ELMO_LINT32  &lRetVal,       ELMO_LINT32  lDefault,
-                        ELMO_LINT32  lMin=L_LONG_MIN,  ELMO_LINT32  lMax=L_LONG_MAX )             throw (CMMCException);
+                        ELMO_LINT32  lMin=L_LONG_MIN,  ELMO_LINT32  lMax=L_LONG_MAX )             ;
 //
                     /* Return ONE parameter of type bool.               */
                     /* Ignore white space, expect True / False.         */
     ELMO_INT32 Read  (   ELMO_PINT8   pLvl1Valu,      ELMO_PINT8   pLvl2Valu,      ELMO_PINT8 pLvl3Name,
-                        ELMO_BOOL    &bRetVal,       ELMO_BOOL    bDefault=0)                     throw (CMMCException);
+                        ELMO_BOOL    &bRetVal,       ELMO_BOOL    bDefault=0)                     ;
 //
                     /* Return ONE parameter of type string */
     ELMO_INT32 Read  (   ELMO_PINT8   pLvl1Valu,      ELMO_PINT8   pLvl2Valu,      ELMO_PINT8 pLvl3Name,
-                        ELMO_PINT8   pStr,           ELMO_LINT32  lLen)                           throw (CMMCException);
+                        ELMO_PINT8   pStr,           ELMO_LINT32  lLen)                           ;
 //
                             /* Functions for Read Array of parameters values *\
                             \* ============================================= */
@@ -350,13 +350,13 @@ public:
     ELMO_INT32 ReadArr(  ELMO_PINT8   pLvl1Valu,      ELMO_PINT8    pLvl2Valu,      ELMO_PINT8 pLvl3Name,
                         ELMO_DOUBLE  dRetVal[],      ELMO_DOUBLE   dDefault,
                         ELMO_UINT32& iActRdElm,      ELMO_UINT32   iReqRdElm=1,
-                        ELMO_DOUBLE  dMin=L_DBL_MIN,   ELMO_DOUBLE   dMax=L_DBL_MAX)              throw (CMMCException);
+                        ELMO_DOUBLE  dMin=L_DBL_MIN,   ELMO_DOUBLE   dMax=L_DBL_MAX)              ;
 //
                     /* Return Array of parameter of type Long */
     ELMO_INT32 ReadArr(  ELMO_PINT8   pLvl1Valu,      ELMO_PINT8    pLvl2Valu,      ELMO_PINT8 pLvl3Name,
                         ELMO_LINT32  lRetVal[],      ELMO_LINT32   lDefault,
                         ELMO_UINT32& iActRdElm,      ELMO_UINT32   iReqRdElm=1,
-                        ELMO_LINT32  lMin=L_LONG_MIN,  ELMO_LINT32   lMax=L_LONG_MAX)             throw (CMMCException);
+                        ELMO_LINT32  lMin=L_LONG_MIN,  ELMO_LINT32   lMax=L_LONG_MAX)             ;
 //
                             /* Functions Return XML file identifier *\
                             \* ==================================== */
@@ -368,10 +368,10 @@ public:
                     /* return:                                                      */
                     /* pAtt1 = "http://www.w3.org/2001/XMLSchema-instance"          */
                     /* pAtt2 = "proposed.xsd"                                       */
-    ELMO_INT32 GetXmlFileRoot    (   ELMO_PINT8  pAtt1,  ELMO_PINT8 pAtt2,    ELMO_LINT32    lLen)  throw (CMMCException);
+    ELMO_INT32 GetXmlFileRoot    (   ELMO_PINT8  pAtt1,  ELMO_PINT8 pAtt2,    ELMO_LINT32    lLen)  ;
                     /* Return the XML "file description name" (pAtt1) and XML file  */
                     /* ver (pAtt2), buffers size for return values are at least lLen*/
-    ELMO_INT32 GetXmlFileDescrp  (   ELMO_PINT8  pAtt1,  ELMO_PINT8 pAtt2,    ELMO_LINT32    lLen)  throw (CMMCException);
+    ELMO_INT32 GetXmlFileDescrp  (   ELMO_PINT8  pAtt1,  ELMO_PINT8 pAtt2,    ELMO_LINT32    lLen)  ;
                     /* Set the print report (speak) level.       */
     void      setSpeakDbgLvl    (   ELMO_UINT32 uiSpeak_lvl);
                     /* Print parsed XML tree to stdout stream                       */
@@ -394,34 +394,34 @@ public:
                     /* Write XML file lines:                                        */
                     /*  <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" */
                     /*          xsi:noNamespaceSchemaLocation="proposed.xsd">       */
-    ELMO_INT32 PutXmlFileRoot    (ELMO_PINT8 pAtt1=(ELMO_PINT8)UPXML_DEF_ROOT_ATT1, ELMO_PINT8 pAtt2=(ELMO_PINT8)UPXML_DEF_ROOT_ATT2)              throw (CMMCException);
+    ELMO_INT32 PutXmlFileRoot    (ELMO_PINT8 pAtt1=(ELMO_PINT8)UPXML_DEF_ROOT_ATT1, ELMO_PINT8 pAtt2=(ELMO_PINT8)UPXML_DEF_ROOT_ATT2)              ;
                     /* Write (null terminated string) to XML "file description name"*/
                     /* (pAtt1) and XML file ver (pAtt2).                            */
-    ELMO_INT32 PutXmlFileDescrp  (ELMO_PINT8 pAtt1,  ELMO_PINT8 pAtt2)                                                     throw (CMMCException);
+    ELMO_INT32 PutXmlFileDescrp  (ELMO_PINT8 pAtt1,  ELMO_PINT8 pAtt2)                                                     ;
                     /* Be aware: 1. Default file name for read is different from defautl*/
                     /* name for save. 2. File is open for update but not save on exit   */
                     /* (or close)  but with explicit save command.                      */
-    ELMO_INT32 Save              (ELMO_PINT8 cFileName=(ELMO_PINT8)DEFAULT_XML_WFILE_NAME, ELMO_PINT8 cFilePath=(ELMO_PINT8)DEFAULT_XML_WFILE_PATH)throw (CMMCException);
+    ELMO_INT32 Save              (ELMO_PINT8 cFileName=(ELMO_PINT8)DEFAULT_XML_WFILE_NAME, ELMO_PINT8 cFilePath=(ELMO_PINT8)DEFAULT_XML_WFILE_PATH);
                     /* Not supporing Yet: Delete Element of any type (if array all of its values). */
-    ELMO_INT32 RemoveElem        (ELMO_PINT8 pLvl1Valu, ELMO_PINT8   pLvl2Valu,  ELMO_PINT8 pLvl3Name)                      throw (CMMCException);
+    ELMO_INT32 RemoveElem        (ELMO_PINT8 pLvl1Valu, ELMO_PINT8   pLvl2Valu,  ELMO_PINT8 pLvl3Name)                      ;
                     /* Write ONE parameter of type Double   */
-    ELMO_INT32 Write             (ELMO_PINT8 pLvl1Valu, ELMO_PINT8   pLvl2Valu,  ELMO_PINT8 pLvl3Name,  ELMO_DOUBLE  dWrVal) throw (CMMCException);
+    ELMO_INT32 Write             (ELMO_PINT8 pLvl1Valu, ELMO_PINT8   pLvl2Valu,  ELMO_PINT8 pLvl3Name,  ELMO_DOUBLE  dWrVal) ;
                     /* Write ONE parameter of type Long     */
-    ELMO_INT32 Write             (ELMO_PINT8 pLvl1Valu, ELMO_PINT8   pLvl2Valu,  ELMO_PINT8 pLvl3Name,  ELMO_LINT32  lWrVal) throw (CMMCException);
+    ELMO_INT32 Write             (ELMO_PINT8 pLvl1Valu, ELMO_PINT8   pLvl2Valu,  ELMO_PINT8 pLvl3Name,  ELMO_LINT32  lWrVal) ;
                     /* Write ONE parameter of type bool.    */
-    ELMO_INT32 Write             (ELMO_PINT8 pLvl1Valu, ELMO_PINT8   pLvl2Valu,  ELMO_PINT8 pLvl3Name,  ELMO_BOOL    bWrVal) throw (CMMCException);
+    ELMO_INT32 Write             (ELMO_PINT8 pLvl1Valu, ELMO_PINT8   pLvl2Valu,  ELMO_PINT8 pLvl3Name,  ELMO_BOOL    bWrVal) ;
                     /* Write ONE parameter of type string   */
-    ELMO_INT32 Write             (ELMO_PINT8 pLvl1Valu, ELMO_PINT8   pLvl2Valu,  ELMO_PINT8 pLvl3Name,  ELMO_PINT8   pStr, ELMO_LINT32 lLen) throw (CMMCException);
+    ELMO_INT32 Write             (ELMO_PINT8 pLvl1Valu, ELMO_PINT8   pLvl2Valu,  ELMO_PINT8 pLvl3Name,  ELMO_PINT8   pStr, ELMO_LINT32 lLen) ;
 //
                             /* Functions for Write Array of parameters values *\
                             \* ============================================== */
 //
                     /* Write Array of parameter of type Double  */
     ELMO_INT32 WriteArr          (ELMO_PINT8  pLvl1Valu,  ELMO_PINT8   pLvl2Valu,  ELMO_PINT8   pLvl3Name,
-                                 ELMO_DOUBLE dWrVal[],   ELMO_UINT32  iActWrElm)   throw (CMMCException);
+                                 ELMO_DOUBLE dWrVal[],   ELMO_UINT32  iActWrElm)   ;
                     /* Write Array of parameter of type Long    */
     ELMO_INT32 WriteArr          (ELMO_PINT8  pLvl1Valu,  ELMO_PINT8   pLvl2Valu,  ELMO_PINT8 pLvl3Name,
-                                 ELMO_LINT32 lWrVal[],   ELMO_UINT32  iActWrElm)   throw (CMMCException);
+                                 ELMO_LINT32 lWrVal[],   ELMO_UINT32  iActWrElm)   ;
                     /* Format for write double / float nuber    */
                     /* E.g: iFieldSize=8 iFractionSize=3 =>     */
                     /* format be: "%8.3f"                       */
@@ -454,7 +454,7 @@ private:
 //
     ELMO_INT32     cmpAttrib           (ELMO_UINT32 uiDeepLvl, ELMO_PVOID  pNodeV,  ELMO_PINT8 pLookForAttrVal);
 //
-    ELMO_INT32     Save_pr             (ELMO_PINT8  cFileName, ELMO_PINT8 cFilePath, ELMO_UINT32 uiFlags)    throw (CMMCException);
+    ELMO_INT32     Save_pr             (ELMO_PINT8  cFileName, ELMO_PINT8 cFilePath, ELMO_UINT32 uiFlags)    ;
 //
     void          handleNodes         (ELMO_UINT32 uiDeepLvl, ELMO_PVOID  pNodeV);
     void          handleNodeAttribute (ELMO_UINT32 uiDeepLvl, ELMO_PVOID  pNodeV);

@@ -55,47 +55,47 @@ public:
     CMMCRTSingleAxis();
     CMMCRTSingleAxis(CMMCSingleAxis& axis);
 
-    void InitAxisData(const ELMO_INT8* cName, MMC_CONNECT_HNDL uHandle) throw (CMMCException);
-    void SetUser607A(ELMO_INT32  iUser607Aval)  throw (CMMCException);
-    void SetUser60FF(ELMO_INT32  iUser60FFval)  throw (CMMCException);
-    void SetUser60B1(ELMO_INT32  iUser60B1val)  throw (CMMCException);
-    void SetUser60B2(ELMO_DOUBLE iUser60B2val)  throw (CMMCException);
-    void SetUser6071(ELMO_DOUBLE dUser6071val)  throw (CMMCException);
-    void SetUserMB1 (ELMO_INT32      iUserMB1)  throw (CMMCException);
-    void SetUserMB2 (ELMO_INT32      iUserMB2)  throw (CMMCException);
-    void SetUserCW  (ELMO_UINT16  usUserCWval)  throw (CMMCException);
+    void InitAxisData(const ELMO_INT8* cName, MMC_CONNECT_HNDL uHandle) ;
+    void SetUser607A(ELMO_INT32  iUser607Aval)  ;
+    void SetUser60FF(ELMO_INT32  iUser60FFval)  ;
+    void SetUser60B1(ELMO_INT32  iUser60B1val)  ;
+    void SetUser60B2(ELMO_DOUBLE iUser60B2val)  ;
+    void SetUser6071(ELMO_DOUBLE dUser6071val)  ;
+    void SetUserMB1 (ELMO_INT32      iUserMB1)  ;
+    void SetUserMB2 (ELMO_INT32      iUserMB2)  ;
+    void SetUserCW  (ELMO_UINT16  usUserCWval)  ;
 
 
-    ELMO_INT32      GetUser607A()       throw (CMMCException);
-    ELMO_INT32      GetUser60FF()       throw (CMMCException);
-    ELMO_INT32      GetUser60B1()       throw (CMMCException);
-    ELMO_DOUBLE     GetUser60B2()       throw (CMMCException);
-    ELMO_DOUBLE     GetUser6071()       throw (CMMCException);
-    ELMO_INT32      GetUserMB1()        throw (CMMCException);
-    ELMO_INT32      GetUserMB2()        throw (CMMCException);
-    ELMO_DOUBLE     GetActualPosition() throw (CMMCException);
-    ELMO_DOUBLE     GetActualVelocity() throw (CMMCException);
-    ELMO_DOUBLE     GetdPos()           throw (CMMCException);
-    ELMO_DOUBLE     GetdVel()           throw (CMMCException);
-    ELMO_INT16      GetAnalogInput()    throw (CMMCException);
-    ELMO_UINT32     GetDigitalInputs()  throw (CMMCException);
-    void            SetDigitalOutPuts(ELMO_UINT32 uiDigitalOutputs) throw (CMMCException);
-    ELMO_DOUBLE     GetActualCurrent()  throw (CMMCException);
-    ELMO_UINT32     GetPLCOpenStatus()  throw (CMMCException);
-    ELMO_UINT16     GetControlWord()    throw (CMMCException);
-    ELMO_UINT16     GetStatusWord()     throw (CMMCException);
-    ELMO_ULINT32    GetCycleCounter()   throw (CMMCException);
+    ELMO_INT32      GetUser607A()       ;
+    ELMO_INT32      GetUser60FF()       ;
+    ELMO_INT32      GetUser60B1()       ;
+    ELMO_DOUBLE     GetUser60B2()       ;
+    ELMO_DOUBLE     GetUser6071()       ;
+    ELMO_INT32      GetUserMB1()        ;
+    ELMO_INT32      GetUserMB2()        ;
+    ELMO_DOUBLE     GetActualPosition() ;
+    ELMO_DOUBLE     GetActualVelocity() ;
+    ELMO_DOUBLE     GetdPos()           ;
+    ELMO_DOUBLE     GetdVel()           ;
+    ELMO_INT16      GetAnalogInput()    ;
+    ELMO_UINT32     GetDigitalInputs()  ;
+    void            SetDigitalOutPuts(ELMO_UINT32 uiDigitalOutputs) ;
+    ELMO_DOUBLE     GetActualCurrent()  ;
+    ELMO_UINT32     GetPLCOpenStatus()  ;
+    ELMO_UINT16     GetControlWord()    ;
+    ELMO_UINT16     GetStatusWord()     ;
+    ELMO_ULINT32    GetCycleCounter()   ;
 
-    int GetUserCW() throw (CMMCException);
+    int GetUserCW() ;
 
-    ELMO_INT32  GetActualPositionINT() throw (CMMCException);
-    ELMO_INT32  GetActualVelocityINT() throw (CMMCException);
-    ELMO_UINT32 GetStatusRegister()    throw (CMMCException);
-    ELMO_DOUBLE GetdTorqueUU()         throw (CMMCException);
-    void        SetUI(ELMO_INT32 iValue, ELMO_UINT32 iIndex) throw (CMMCException);
-    ELMO_INT32  GetUI(ELMO_UINT32 iIndex) throw (CMMCException);
-    void        SetUF(ELMO_FLOAT fValue, ELMO_UINT32 iIndex) throw (CMMCException);
-    float       GetUF(ELMO_UINT32 iIndex) throw (CMMCException);
+    ELMO_INT32  GetActualPositionINT() ;
+    ELMO_INT32  GetActualVelocityINT() ;
+    ELMO_UINT32 GetStatusRegister()    ;
+    ELMO_DOUBLE GetdTorqueUU()         ;
+    void        SetUI(ELMO_INT32 iValue, ELMO_UINT32 iIndex) ;
+    ELMO_INT32  GetUI(ELMO_UINT32 iIndex) ;
+    void        SetUF(ELMO_FLOAT fValue, ELMO_UINT32 iIndex) ;
+    float       GetUF(ELMO_UINT32 iIndex) ;
 
 
     API_COMN        m_stAPICom;

@@ -23,40 +23,40 @@ public:
     CMMCDS406();
     ~CMMCDS406();
 
-    ELMO_DOUBLE GetActualPosition() throw (CMMCException);
+    ELMO_DOUBLE GetActualPosition() ;
 
     //
     /*! \fn void ConfigGeneralTPDO3()
     *   \brief This function configure to transmit general PDO3 message.
     *   \return - void.
     */
-    void ConfigGeneralTPDO3(ELMO_UINT8 ucEventType) throw(CMMCException);
+    void ConfigGeneralTPDO3(ELMO_UINT8 ucEventType) ;
 
     //
     /*! \fn void ConfigGeneralTPDO4()
     *   \brief This function configure to transmit general PDO4 message.
     *   \return - void.
     */
-    void ConfigGeneralTPDO4(ELMO_UINT8 ucEventType) throw(CMMCException);
+    void ConfigGeneralTPDO4(ELMO_UINT8 ucEventType) ;
 
     //
     /*! \fn void CancelGeneralTPDO3()
     *   \brief This function cancle the configuration of transmitting general PDO3 message.
     *   \return - void.
     */
-    void CancelGeneralTPDO3() throw(CMMCException);
+    void CancelGeneralTPDO3() ;
 
     //
     /*! \fn void CancelGeneralTPDO4()
     *   \brief This function cancle the configuration of transmitting general PDO3 message.
     *   \return - void.
     */
-    void CancelGeneralTPDO4() throw(CMMCException);
+    void CancelGeneralTPDO4() ;
 
 private:
 
-    void PDOGeneralWrite(ELMO_UINT8 ucParam,MMCPPULL_T ulliVal)throw (CMMCException){return;}
-    void GetPDOInfo(ELMO_UINT8 uiPDONumber, ELMO_INT32 &iPDOEventMode, ELMO_UINT8 &ucPDOCommType, ELMO_UINT8 &ucTPDOCommEventGroup, ELMO_UINT8 &ucRPDOCommEventGroup)throw (CMMCException){return;}
+    void PDOGeneralWrite(ELMO_UINT8 ucParam,MMCPPULL_T ulliVal){return;}
+    void GetPDOInfo(ELMO_UINT8 uiPDONumber, ELMO_INT32 &iPDOEventMode, ELMO_UINT8 &ucPDOCommType, ELMO_UINT8 &ucTPDOCommEventGroup, ELMO_UINT8 &ucRPDOCommEventGroup){return;}
 
 };
 

@@ -21,7 +21,7 @@ namespace elmo_maestro_hardware
 class ElmoMaestroHardwareInterface : public hardware_interface::SystemInterface
 {
 public:
-  RCLCPP_SHARED_PTR_DEFINITIONS(ElmoMaestroHardwareInterface);
+  RCLCPP_SHARED_PTR_DEFINITIONS(ElmoMaestroHardwareInterface)
 
   ELMO_MAESTRO_HARDWARE_PUBLIC
   ElmoMaestroHardwareInterface();

@@ -23,14 +23,14 @@ public:
     CMMCRTGroupAxis();
     CMMCRTGroupAxis(CMMCGroupAxis& axis);
 
-    void InitAxisData(const ELMO_PINT8 cName, MMC_CONNECT_HNDL uHandle) throw (CMMCException);
+    void InitAxisData(const ELMO_PINT8 cName, MMC_CONNECT_HNDL uHandle) ;
 
-    void GetPos(ELMO_PDOUBLE dArr, NC_AXIS_IN_GROUP_TYPE_ENUM_EX startIndex, NC_AXIS_IN_GROUP_TYPE_ENUM_EX endIndex)throw (CMMCException);
-    void GetVel(ELMO_PDOUBLE dArr, NC_AXIS_IN_GROUP_TYPE_ENUM_EX startIndex, NC_AXIS_IN_GROUP_TYPE_ENUM_EX endIndex)throw (CMMCException);
+    void GetPos(ELMO_PDOUBLE dArr, NC_AXIS_IN_GROUP_TYPE_ENUM_EX startIndex, NC_AXIS_IN_GROUP_TYPE_ENUM_EX endIndex);
+    void GetVel(ELMO_PDOUBLE dArr, NC_AXIS_IN_GROUP_TYPE_ENUM_EX startIndex, NC_AXIS_IN_GROUP_TYPE_ENUM_EX endIndex);
     
-    void GetACDC(ELMO_PDOUBLE dArr, NC_AXIS_IN_GROUP_TYPE_ENUM_EX startIndex, NC_AXIS_IN_GROUP_TYPE_ENUM_EX endIndex)throw (CMMCException);
-    ELMO_UINT32 GetPLCOpenStatus() throw (CMMCException);
-    void GetVectorVel(ELMO_PDOUBLE dValue)throw (CMMCException);
+    void GetACDC(ELMO_PDOUBLE dArr, NC_AXIS_IN_GROUP_TYPE_ENUM_EX startIndex, NC_AXIS_IN_GROUP_TYPE_ENUM_EX endIndex);
+    ELMO_UINT32 GetPLCOpenStatus() ;
+    void GetVectorVel(ELMO_PDOUBLE dValue);
 
 protected:
     ELMO_PUINT8     m_pShmPtr;

@@ -18,66 +18,66 @@ public:
     CMMCDS401Axis();
     ~CMMCDS401Axis();
 
-    void EnableDS401DIChangedEvent() throw (CMMCException);
-    void DisableDS401DIChangedEvent() throw (CMMCException);
-    MMCPPULL_T ReadDS401DInput() throw (CMMCException);
-    void WriteDS401DOutput(MMCPPULL_T) throw (CMMCException);
+    void EnableDS401DIChangedEvent() ;
+    void DisableDS401DIChangedEvent() ;
+    MMCPPULL_T ReadDS401DInput() ;
+    void WriteDS401DOutput(MMCPPULL_T) ;
     //
     //
     /*! \fn void ConfigGeneralRPDO3()
     *   \brief This function configure to receive general PDO3 message.
     *   \return - void.
     */
-    void ConfigGeneralRPDO3(ELMO_UINT8 ucEventType, ELMO_UINT8 ucPDOCommParam, ELMO_UINT8 ucPDOLength) throw(CMMCException);
+    void ConfigGeneralRPDO3(ELMO_UINT8 ucEventType, ELMO_UINT8 ucPDOCommParam, ELMO_UINT8 ucPDOLength) ;
 
     //
     /*! \fn void ConfigGeneralRPDO4()
     *   \brief This function configure to receive general PDO4 message.
     *   \return - void.
     */
-    void ConfigGeneralRPDO4(ELMO_UINT8 ucEventType, ELMO_UINT8 ucPDOCommParam, ELMO_UINT8 ucPDOLength) throw(CMMCException);
+    void ConfigGeneralRPDO4(ELMO_UINT8 ucEventType, ELMO_UINT8 ucPDOCommParam, ELMO_UINT8 ucPDOLength) ;
 
     //
     /*! \fn void CancelGeneralRPDO3()
     *   \brief This function cancel the configuration of receiving general PDO3 message.
     *   \return - void.
     */
-    void CancelGeneralRPDO3() throw(CMMCException);
+    void CancelGeneralRPDO3() ;
 
     //
     /*! \fn void CancelGeneralRPDO4()
     *   \brief This function cancle the configuration of receiving general PDO4 message.
     *   \return - void.
     */
-    void CancelGeneralRPDO4() throw(CMMCException);
+    void CancelGeneralRPDO4() ;
 
     //
     /*! \fn void ConfigGeneralTPDO3()
     *   \brief This function configure to transmit general PDO3 message.
     *   \return - void.
     */
-    void ConfigGeneralTPDO3(ELMO_UINT8 ucEventType) throw(CMMCException);
+    void ConfigGeneralTPDO3(ELMO_UINT8 ucEventType) ;
 
     //
     /*! \fn void ConfigGeneralTPDO4()
     *   \brief This function configure to transmit general PDO4 message.
     *   \return - void.
     */
-    void ConfigGeneralTPDO4(ELMO_UINT8 ucEventType) throw(CMMCException);
+    void ConfigGeneralTPDO4(ELMO_UINT8 ucEventType) ;
 
     //
     /*! \fn void CancelGeneralTPDO3()
     *   \brief This function cancle the configuration of transmitting general PDO3 message.
     *   \return - void.
     */
-    void CancelGeneralTPDO3() throw(CMMCException);
+    void CancelGeneralTPDO3() ;
 
     //
     /*! \fn void CancelGeneralTPDO4()
     *   \brief This function cancle the configuration of transmitting general PDO3 message.
     *   \return - void.
     */
-    void CancelGeneralTPDO4() throw(CMMCException);
+    void CancelGeneralTPDO4() ;
 
 };
 
