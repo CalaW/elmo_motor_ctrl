@@ -53,8 +53,13 @@ int main()
     axes[0].m_fDeceleration = 10000;
     axes[0].m_fVelocity = 1000;
 
+    axes[0].MoveVelocity(0);  // uint: cnt/sec ------------- 24cnt/r
+    sleep(5);
     axes[0].MoveVelocity(1000);  // uint: cnt/sec ------------- 24cnt/r
-    sleep(10);
+    sleep(5);
+    axes[0].MoveVelocity(500);  // uint: cnt/sec ------------- 24cnt/r
+    sleep(5);
+
     // stop axis wait till its in a 'standstill' state
     axes[0].Stop();
     while (!(axes[0].ReadStatus() & NC_AXIS_STAND_STILL_MASK))

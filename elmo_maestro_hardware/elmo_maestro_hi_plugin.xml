@@ -1,0 +1,9 @@
+<library path="elmo_maestro_hardware">
+    <class name="elmo_maestro_hardware/ElmoMaestroHardwareInterface"
+           type="elmo_maestro_hardware::ElmoMaestroHardwareInterface"
+           base_class_type="hardware_interface::SystemInterface">
+      <description>
+        The ros2_control interface for elmo maestro, currently only support 1 motor.
+      </description>
+    </class>
+  </library>

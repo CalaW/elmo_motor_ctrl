@@ -23,8 +23,7 @@ class ElmoMaestroHardwareInterface : public hardware_interface::SystemInterface
 public:
   RCLCPP_SHARED_PTR_DEFINITIONS(ElmoMaestroHardwareInterface)
 
-  ELMO_MAESTRO_HARDWARE_PUBLIC
-  ElmoMaestroHardwareInterface();
+   ~ElmoMaestroHardwareInterface() override;
 
   // initialize all variables and process parameters
   ELMO_MAESTRO_HARDWARE_PUBLIC
@@ -59,7 +58,7 @@ public:
   hardware_interface::CallbackReturn on_deactivate(
     const rclcpp_lifecycle::State & previous_state) override;
 
-  // 
+  //
   ELMO_MAESTRO_HARDWARE_PUBLIC
   hardware_interface::CallbackReturn on_shutdown(
     const rclcpp_lifecycle::State & previous_state) override;
@@ -78,11 +77,16 @@ public:
 
 private:
   std::array<CMMCSingleAxis, 1> axes_;
+  double hw_joint_command_;
+  double hw_joint_state_;
+  std::string host_ip_;
+  std::string target_ip_;
   MMC_CONNECTION_PARAM_STRUCT conn_param_;
   MMC_CONNECT_HNDL conn_hndl_;
   CMMCConnection conn_;
-  void elmoInit();
+  void elmoInit(const std::string & host_ip, const std::string & target_ip);
   void onEmergency(unsigned short usAxisRef, short sEmcyCode);
+  int closeConnection();
 };
 }  // namespace elmo_maestro_hardware
 
