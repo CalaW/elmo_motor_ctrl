@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!-- Revolute-Revolute Manipulator -->
+<!--
+Copied and modified from ROS1 example -
+https://github.com/ros-simulation/gazebo_ros_demos/blob/kinetic-devel/rrbot_description/urdf/rrbot.xacro
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="2dof_robot">
+  <xacro:arg name="prefix" default="" />
+
+  <!-- Constants for robot dimensions -->
+  <xacro:property name="prefix" value="$(arg prefix)" /> <!-- arbitrary value for mass -->
+  <xacro:property name="mass" value="1" /> <!-- arbitrary value for mass -->
+  <xacro:property name="width" value="0.1" /> <!-- Square dimensions (widthxwidth) of beams -->
+  <xacro:property name="height1" value="2" /> <!-- Link 1 -->
+  <xacro:property name="height2" value="1" /> <!-- Link 2 -->
+  <xacro:property name="axel_offset" value="0.05" /> <!-- Space btw top of beam and the each joint -->
+
+  <joint name="${prefix}base_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="world"/>
+    <child link="${prefix}base_link" />
+  </joint>
+
+  <!-- Base Link -->
+  <link name="${prefix}base_link">
+    <collision>
+      <origin xyz="0 0 ${height1/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${width} ${width} ${height1}"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 ${height1/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${width} ${width} ${height1}"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 ${height1/2}" rpy="0 0 0"/>
+      <mass value="${mass}"/>
+      <inertia
+        ixx="${mass / 12.0 * (width*width + height1*height1)}" ixy="0.0" ixz="0.0"
+        iyy="${mass / 12.0 * (height1*height1 + width*width)}" iyz="0.0"
+        izz="${mass / 12.0 * (width*width + width*width)}"/>
+    </inertial>
+  </link>
+
+  <joint name="${prefix}joint1" type="continuous">
+    <parent link="${prefix}base_link"/>
+    <child link="${prefix}link1"/>
+    <origin xyz="0 ${width} ${height1 - axel_offset}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="1.0"/>
+  </joint>
+
+  <!-- Middle Link -->
+  <link name="${prefix}link1">
+    <collision>
+      <origin xyz="0 0 ${height2/2 - axel_offset}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${width} ${width} ${height2}"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 ${height2/2 - axel_offset}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${width} ${width} ${height2}"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 ${height2/2 - axel_offset}" rpy="0 0 0"/>
+      <mass value="${mass}"/>
+      <inertia
+        ixx="${mass / 12.0 * (width*width + height2*height2)}" ixy="0.0" ixz="0.0"
+        iyy="${mass / 12.0 * (height2*height2 + width*width)}" iyz="0.0"
+        izz="${mass / 12.0 * (width*width + width*width)}"/>
+    </inertial>
+  </link>
+
+  <joint name="${prefix}tool_joint" type="fixed">
+    <origin xyz="0 0 1" rpy="0 0 0" />
+    <parent link="${prefix}link1"/>
+    <child link="${prefix}tool_link" />
+  </joint>
+
+  <!-- Tool Link -->
+  <link name="${prefix}tool_link">
+  </link>
+
+  <!-- Import RRBot ros2_control description -->
+  <xacro:include filename="$(find elmo_maestro_description)/ros2_control/elmo_single_motor.ros2_control.xacro" />
+
+  <!-- Used for fixing robot -->
+  <link name="world"/>
+
+  <xacro:elmo_single_motor_ros2_control
+    name="ElmoSingleMotor" prefix="$(arg prefix)" />
+
+</robot>
