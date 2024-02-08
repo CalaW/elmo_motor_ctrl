@@ -52,6 +52,9 @@ set(DEPENDENCIES
 
 ament_target_dependencies(${PROJECT_NAME} ${DEPENDENCIES})
 
+# prevent pluginlib from using boost
+target_compile_definitions(${PROJECT_NAME} PUBLIC "PLUGINLIB__DISABLE_BOOST_FUNCTIONS")
+
 pluginlib_export_plugin_description_file(hardware_interface elmo_maestro_hi_plugin.xml)
 
 # INSTALL hardware interface
