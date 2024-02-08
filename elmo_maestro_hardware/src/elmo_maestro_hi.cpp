@@ -32,9 +32,8 @@ hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_init(
 
 // setup communication with the hardware
 hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_configure(
-  const rclcpp_lifecycle::State & previous_state)
+  const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  (void)previous_state;  // hush "-Wunused-parameter" warning
   try {
     elmoInit(host_ip_, target_ip_);
 
@@ -56,9 +55,8 @@ hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_configure(
 
 // cleanup communication with the hardware
 hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_cleanup(
-  const rclcpp_lifecycle::State & previous_state)
+  const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  (void)previous_state;  // hush "-Wunused-parameter" warning
   RCLCPP_WARN(rclcpp::get_logger("ElmoMaestroHardwareInterface"), "on_cleanup done");
   return CallbackReturn::SUCCESS;
 }
@@ -89,9 +87,8 @@ ElmoMaestroHardwareInterface::export_command_interfaces()
 
 // enable "power"
 hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_activate(
-  const rclcpp_lifecycle::State & previous_state)
+  const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  (void)previous_state;  // hush "-Wunused-parameter" warning
   std::cout << "status before power on: 0x" << std::hex << axes_[0].ReadStatus() << std::endl;
   auto status = axes_[0].ReadStatus();
   if (status & NC_AXIS_DISABLED_MASK) {
@@ -111,9 +108,8 @@ hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_activate(
 
 // stop all movement
 hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_deactivate(
-  const rclcpp_lifecycle::State & previous_state)
+  const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  (void)previous_state;  // hush "-Wunused-parameter" warning
   for (auto & axis : axes_) {
     axis.Stop();
   }
@@ -128,23 +124,21 @@ hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_deactivate(
 }
 
 hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_shutdown(
-  const rclcpp_lifecycle::State & previous_state)
+  const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  (void)previous_state;  // hush "-Wunused-parameter" warning
   RCLCPP_WARN(rclcpp::get_logger("ElmoMaestroHardwareInterface"), "on_shutdown done");
   return CallbackReturn::SUCCESS;
 }
 
 hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_error(
-  const rclcpp_lifecycle::State & previous_state)
+  const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  (void)previous_state;  // hush "-Wunused-parameter" warning
   RCLCPP_WARN(rclcpp::get_logger("ElmoMaestroHardwareInterface"), "on_error done");
   return CallbackReturn::SUCCESS;
 }
 
 hardware_interface::return_type ElmoMaestroHardwareInterface::read(
-  const rclcpp::Time & time, const rclcpp::Duration & period)
+  const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   hw_joint_state_ = axes_[0].GetActualVelocity();
   RCLCPP_INFO(
@@ -154,7 +148,7 @@ hardware_interface::return_type ElmoMaestroHardwareInterface::read(
 }
 
 hardware_interface::return_type ElmoMaestroHardwareInterface::write(
-  const rclcpp::Time & time, const rclcpp::Duration & period)
+  const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   RCLCPP_INFO(
     rclcpp::get_logger("ElmoMaestroHardwareInterface"), "got command %.5f for joint %s",
