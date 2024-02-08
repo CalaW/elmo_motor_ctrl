@@ -23,7 +23,7 @@ class ElmoMaestroHardwareInterface : public hardware_interface::SystemInterface
 public:
   RCLCPP_SHARED_PTR_DEFINITIONS(ElmoMaestroHardwareInterface)
 
-   ~ElmoMaestroHardwareInterface() override;
+  ~ElmoMaestroHardwareInterface() override;
 
   // initialize all variables and process parameters
   ELMO_MAESTRO_HARDWARE_PUBLIC
