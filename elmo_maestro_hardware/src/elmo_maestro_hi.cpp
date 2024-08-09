@@ -89,14 +89,18 @@ ElmoMaestroHardwareInterface::export_command_interfaces()
 hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  std::cout << "status before power on: 0x" << std::hex << axes_[0].ReadStatus() << std::endl;
+  RCLCPP_INFO_STREAM(
+    rclcpp::get_logger("ElmoMaestroHardwareInterface"),
+    "status before power on: 0x" << std::hex << axes_[0].ReadStatus());
   auto status = axes_[0].ReadStatus();
   if (status & NC_AXIS_DISABLED_MASK) {
     axes_[0].PowerOn();
     while (!(axes_[0].ReadStatus() & NC_AXIS_STAND_STILL_MASK))
       ;
   }
-  std::cout << "status after power on: 0x" << std::hex << axes_[0].ReadStatus() << std::endl;
+  RCLCPP_INFO_STREAM(
+    rclcpp::get_logger("ElmoMaestroHardwareInterface"),
+    "status after power on: 0x" << std::hex << axes_[0].ReadStatus());
   // set some default values for joints
   if (std::isnan(hw_joint_state_) || std::isnan(hw_joint_command_)) {
     hw_joint_state_ = 0;
@@ -141,18 +145,18 @@ hardware_interface::return_type ElmoMaestroHardwareInterface::read(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   hw_joint_state_ = axes_[0].GetActualVelocity();
-  RCLCPP_INFO(
-    rclcpp::get_logger("ElmoMaestroHardwareInterface"), "read %.5f for joint %s", hw_joint_state_,
-    info_.joints[0].name.c_str());
+  // RCLCPP_INFO(
+  //   rclcpp::get_logger("ElmoMaestroHardwareInterface"), "read %.5f for joint %s", hw_joint_state_,
+  //   info_.joints[0].name.c_str());
   return hardware_interface::return_type::OK;
 }
 
 hardware_interface::return_type ElmoMaestroHardwareInterface::write(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
-  RCLCPP_INFO(
-    rclcpp::get_logger("ElmoMaestroHardwareInterface"), "got command %.5f for joint %s",
-    hw_joint_command_, info_.joints[0].name.c_str());
+  // RCLCPP_INFO(
+  //   rclcpp::get_logger("ElmoMaestroHardwareInterface"), "got command %.5f for joint %s",
+  //   hw_joint_command_, info_.joints[0].name.c_str());
 
   // uint: cnt/sec ------------- 24cnt/r
   axes_[0].MoveVelocity(hw_joint_command_, MC_ABORTING_MODE);
