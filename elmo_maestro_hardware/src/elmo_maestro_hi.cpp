@@ -6,11 +6,6 @@ using CallbackReturn = rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface
 namespace elmo_maestro_hardware
 {
 
-ElmoMaestroHardwareInterface::~ElmoMaestroHardwareInterface()
-{
-  on_deactivate(rclcpp_lifecycle::State());
-}
-
 // initialize all variables and process parameters
 hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_init(
   const hardware_interface::HardwareInfo & info)
@@ -59,30 +54,6 @@ hardware_interface::CallbackReturn ElmoMaestroHardwareInterface::on_cleanup(
 {
   RCLCPP_WARN(rclcpp::get_logger("ElmoMaestroHardwareInterface"), "on_cleanup done");
   return CallbackReturn::SUCCESS;
-}
-
-// define state resources
-std::vector<hardware_interface::StateInterface>
-ElmoMaestroHardwareInterface::export_state_interfaces()
-{
-  std::vector<hardware_interface::StateInterface> state_interfaces;
-
-  state_interfaces.emplace_back(hardware_interface::StateInterface(
-    info_.joints[0].name, hardware_interface::HW_IF_VELOCITY, &hw_joint_state_));
-
-  return state_interfaces;
-}
-
-// define command resources
-std::vector<hardware_interface::CommandInterface>
-ElmoMaestroHardwareInterface::export_command_interfaces()
-{
-  std::vector<hardware_interface::CommandInterface> command_interfaces;
-
-  command_interfaces.emplace_back(hardware_interface::CommandInterface(
-    info_.joints[0].name, hardware_interface::HW_IF_VELOCITY, &hw_joint_command_));
-
-  return command_interfaces;
 }
 
 // enable "power"
@@ -145,6 +116,7 @@ hardware_interface::return_type ElmoMaestroHardwareInterface::read(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   hw_joint_state_ = axes_[0].GetActualVelocity();
+  set_state(motor_interface_name_, hw_joint_state_);
   // RCLCPP_INFO(
   //   rclcpp::get_logger("ElmoMaestroHardwareInterface"), "read %.5f for joint %s", hw_joint_state_,
   //   info_.joints[0].name.c_str());
@@ -159,6 +131,7 @@ hardware_interface::return_type ElmoMaestroHardwareInterface::write(
   //   hw_joint_command_, info_.joints[0].name.c_str());
 
   // uint: cnt/sec ------------- 24cnt/r
+  hw_joint_command_ = get_command(motor_interface_name_);
   axes_[0].MoveVelocity(hw_joint_command_, MC_ABORTING_MODE);
   return hardware_interface::return_type::OK;
 }
